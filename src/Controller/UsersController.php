@@ -54,11 +54,11 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('De gebruiker is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('De gebruiker kon niet opgeslagen worden, probeer het opnieuw.'));
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
@@ -79,11 +79,11 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('De gebruiker is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('De gebruiker kon niet opgeslagen worden, probeer het opnieuw.'));
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
@@ -101,11 +101,32 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('De gebruiker is verwijderd.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('De gebruiker kon niet verwijderd worden, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function login() {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error('De gebruikersnaam of het wachtwoord is incorrect.');
+        }
+    }
+
+    public function initialize() {
+        parent::initialize();
+        $this->Auth->allow(['logout', 'add']);
+    }
+
+    public function logout() {
+        $this->Flash->success('U bent nu uitgelogd.');
+        return $this->redirect($this->Auth->logout());
     }
 }

@@ -20,9 +20,6 @@ class DishesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Categories', 'Subcategories']
-        ];
         $dishes = $this->paginate($this->Dishes);
 
         $this->set(compact('dishes'));
@@ -39,7 +36,7 @@ class DishesController extends AppController
     public function view($id = null)
     {
         $dish = $this->Dishes->get($id, [
-            'contain' => ['Categories', 'Subcategories', 'Orderlists']
+            'contain' => ['Orderlists']
         ]);
 
         $this->set('dish', $dish);
@@ -63,9 +60,7 @@ class DishesController extends AppController
             }
             $this->Flash->error(__('The dish could not be saved. Please, try again.'));
         }
-        $categories = $this->Dishes->Categories->find('list', ['limit' => 200]);
-        $subcategories = $this->Dishes->Subcategories->find('list', ['limit' => 200]);
-        $this->set(compact('dish', 'categories', 'subcategories'));
+        $this->set(compact('dish'));
         $this->set('_serialize', ['dish']);
     }
 
@@ -90,9 +85,7 @@ class DishesController extends AppController
             }
             $this->Flash->error(__('The dish could not be saved. Please, try again.'));
         }
-        $categories = $this->Dishes->Categories->find('list', ['limit' => 200]);
-        $subcategories = $this->Dishes->Subcategories->find('list', ['limit' => 200]);
-        $this->set(compact('dish', 'categories', 'subcategories'));
+        $this->set(compact('dish'));
         $this->set('_serialize', ['dish']);
     }
 

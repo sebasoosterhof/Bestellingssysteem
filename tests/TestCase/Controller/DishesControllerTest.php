@@ -17,8 +17,6 @@ class DishesControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.dishes',
-        'app.categories',
-        'app.subcategories',
         'app.orderlists'
     ];
 

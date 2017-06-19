@@ -18,8 +18,8 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('subcategory_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('category') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('subcategory') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('discount_title') ?></th>
@@ -34,8 +34,8 @@
             <?php foreach ($dishes as $dish): ?>
             <tr>
                 <td><?= $this->Number->format($dish->id) ?></td>
-                <td><?= $this->Number->format($dish->category_id) ?></td>
-                <td><?= $this->Number->format($dish->subcategory_id) ?></td>
+                <td><?= h($dish->category) ?></td>
+                <td><?= h($dish->subcategory) ?></td>
                 <td><?= h($dish->title) ?></td>
                 <td><?= h($dish->price) ?></td>
                 <td><?= h($dish->discount_title) ?></td>

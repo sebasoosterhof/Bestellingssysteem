@@ -25,8 +25,6 @@ class DishesTableTest extends TestCase
      */
     public $fixtures = [
         'app.dishes',
-        'app.categories',
-        'app.subcategories',
         'app.orderlists'
     ];
 
@@ -70,16 +68,6 @@ class DishesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

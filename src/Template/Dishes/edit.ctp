@@ -22,8 +22,8 @@
     <fieldset>
         <legend><?= __('Edit Dish') ?></legend>
         <?php
-            echo $this->Form->control('category_id');
-            echo $this->Form->control('subcategory_id');
+            echo $this->Form->control('category');
+            echo $this->Form->control('subcategory');
             echo $this->Form->control('title');
             echo $this->Form->control('description');
             echo $this->Form->control('price');

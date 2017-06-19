@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Dishes Model
  *
- * @property \App\Model\Table\CategoriesTable|\Cake\ORM\Association\BelongsTo $Categories
- * @property \App\Model\Table\SubcategoriesTable|\Cake\ORM\Association\BelongsTo $Subcategories
  * @property \App\Model\Table\OrderlistsTable|\Cake\ORM\Association\HasMany $Orderlists
  *
  * @method \App\Model\Entity\Dish get($primaryKey, $options = [])
@@ -42,14 +40,6 @@ class DishesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Categories', [
-            'foreignKey' => 'category_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Subcategories', [
-            'foreignKey' => 'subcategory_id',
-            'joinType' => 'INNER'
-        ]);
         $this->hasMany('Orderlists', [
             'foreignKey' => 'dish_id'
         ]);
@@ -66,6 +56,12 @@ class DishesTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
+
+        $validator
+            ->allowEmpty('category');
+
+        $validator
+            ->allowEmpty('subcategory');
 
         $validator
             ->requirePresence('title', 'create')
@@ -90,20 +86,5 @@ class DishesTable extends Table
             ->allowEmpty('discount_duration');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['category_id'], 'Categories'));
-        $rules->add($rules->existsIn(['subcategory_id'], 'Subcategories'));
-
-        return $rules;
     }
 }

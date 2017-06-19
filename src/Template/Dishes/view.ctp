@@ -19,6 +19,14 @@
     <h3><?= h($dish->title) ?></h3>
     <table class="vertical-table">
         <tr>
+            <th scope="row"><?= __('Category') ?></th>
+            <td><?= h($dish->category) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Subcategory') ?></th>
+            <td><?= h($dish->subcategory) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Title') ?></th>
             <td><?= h($dish->title) ?></td>
         </tr>
@@ -37,14 +45,6 @@
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($dish->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Category Id') ?></th>
-            <td><?= $this->Number->format($dish->category_id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Subcategory Id') ?></th>
-            <td><?= $this->Number->format($dish->subcategory_id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Discount Duration') ?></th>

@@ -7,8 +7,8 @@ use Cake\ORM\Entity;
  * Dish Entity
  *
  * @property int $id
- * @property int $category_id
- * @property int $subcategory_id
+ * @property string $category
+ * @property string $subcategory
  * @property string $title
  * @property string $description
  * @property string $price
@@ -18,8 +18,6 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\Category $category
- * @property \App\Model\Entity\Subcategory $subcategory
  * @property \App\Model\Entity\Orderlist[] $orderlists
  */
 class Dish extends Entity
