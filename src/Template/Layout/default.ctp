@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Het Theehuis';
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,6 +28,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('custom.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -37,13 +38,24 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+                <!--<h1><a href=""><?= $this->fetch('title') ?></a></h1>-->
+                <h1><a href="">Het Theehuis</a></h1>
             </li>
         </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
+            <div class="top-bar-section">
+                <ul class="right">
+                    <div>
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="navbar-content"><?= $_SESSION['Auth']['User']['username']; ?></span>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                </ul>
+                    </div>
+            </div>
+                <!--<li><span class="navbar-content"><?= $_SESSION['Auth']['User']['username']; ?></span></li>-->
             </ul>
         </div>
     </nav>
