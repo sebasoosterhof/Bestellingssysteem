@@ -25,7 +25,6 @@ $cakeDescription = 'Het Theehuis';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('custom.css') ?>
@@ -44,26 +43,48 @@ $cakeDescription = 'Het Theehuis';
         </ul>
             <div class="top-bar-section">
                 <ul class="right">
-                    <div>
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="navbar-content"><?= $_SESSION['Auth']['User']['username']; ?></span>
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">JavaScript</a></li>
+                   <?php if ($_SESSION['Auth']): ?>
+                    <li class="logout-dropdown">
+                        <span class="navbar-content accordion clickable"><?= $_SESSION['Auth']['User']['username']; ?></span>
+                        <div class="panel">
+                            <a href="/users/login" class="clickable">Uitloggen</a>
+                        </div>
+                    </li>
+                    <?php endif; ?>
                 </ul>
-                    </div>
             </div>
-                <!--<li><span class="navbar-content"><?= $_SESSION['Auth']['User']['username']; ?></span></li>-->
-            </ul>
-        </div>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+        <style>
+            div.panel {
+                padding: 0 18px;
+                background-color: white;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.2s ease-out;
+            }
+        </style>
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+                } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            }
+            }
+        </script>
     </footer>
 </body>
 </html>

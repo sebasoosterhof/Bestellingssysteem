@@ -18,7 +18,7 @@
 
         //*********************************************************************************************************************************
         //
-        // Tijdelijke oplossing voor enum's in PHP - https://stackoverflow.com/questions/38200034/cakephp-query-for-enum-field-in-database
+        // Temporary solution for enum's in CakePHP - https://stackoverflow.com/questions/38200034/cakephp-query-for-enum-field-in-database
         //
         //*********************************************************************************************************************************
         $category = [ 'Kies een categorie...', 'Lunch', 'Diner', 'Dessert'];

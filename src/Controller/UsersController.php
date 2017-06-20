@@ -112,11 +112,6 @@ class UsersController extends AppController
     public function login() {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            $user_id = $this_user['User']['username'];
-            $this->request->data['User'] = array_merge(
-                $this->request->data['User'],
-                array('username' => $username)
-        );
             if ($user) {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
@@ -127,7 +122,7 @@ class UsersController extends AppController
 
     public function initialize() {
         parent::initialize();
-        $this->Auth->allow(['logout', 'add']);
+        $this->Auth->allow(['login', 'logout', 'add']);
     }
 
     public function logout() {

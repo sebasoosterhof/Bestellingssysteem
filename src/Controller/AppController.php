@@ -56,6 +56,15 @@ class AppController extends Controller
                 'controller' => 'Users',
                 'action' => 'login'
             ],
+            'loginRedirect' => [
+                'controller' => 'Dishes',
+                'action' => 'add'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'logout',
+                'login'
+            ],
             'unautorizedRedirect' => $this->referer()
             ]);
 
