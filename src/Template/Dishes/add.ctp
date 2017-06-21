@@ -10,7 +10,7 @@
         <li><?= $this->Html->link(__('Gerechten bewerken'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="dishes form large-9 medium-8 columns content">
+<div class="form large-9 medium-8 columns content">
     <?= $this->Form->create($dish) ?>
     <fieldset>
         <legend><?= __('Gerecht toevoegen') ?></legend>

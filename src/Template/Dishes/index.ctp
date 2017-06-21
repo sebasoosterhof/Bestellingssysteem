@@ -4,6 +4,11 @@
   * @var \App\Model\Entity\Dish[]|\Cake\Collection\CollectionInterface $dishes
   */
 ?>
+<?php
+    $category = "";
+    $filteredDishes = $lunchDishes;
+?>
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>
@@ -11,64 +16,68 @@
     </ul>
 
     <ul class="side-nav">
+        <?php
+            if(isset($_GET['categorie'])){
+            $categorie=$_GET['categorie'];
+            if ($categorie == 'lunch'){
+                $category = "Lunch";
+                $filteredDishes = $lunchDishes;
+            }
+            if ($categorie == 'diner'){
+                $category = "Diner";
+                $filteredDishes = $dinerDishes;
+            }
+            if ($categorie == 'dessert'){
+                $category = "Dessert";
+                $filteredDishes = $dessertDishes;
+            }
+            }  ?>
         <li>
-            <?= $this->Html->link(__('Lunch'), ['onclick' => $filteredDishes = $lunchDishes]) ?>
+            <a href="?categorie=lunch">Lunch</a>
         </li>
         <li>
-            <?= $this->Html->link(__('Diner'), ['onclick' => $filteredDishes = $dinerDishes]) ?>
+            <a href="?categorie=diner">Diner</a>
         </li>
         <li>
-            <?= $this->Html->link(__('Dessert'), ['onclick' => $filteredDishes = $dessertDishes]) ?>
+            <a href="?categorie=dessert">Dessert</a>
         </li>
     </ul>
 </nav>
 
 
+
 <div class="index large-9 medium-8 columns content">
-    <?php foreach ($dessertDishes as $dish): ?>
-    <div class="dish-delete">
-        <?= $this->Form->postLink(
-            $this->Html->tag('i', '', array('class' => 'fa fa-trash delete-icon')). "",
-                    array('action' => 'delete', $dish->id),
-                    array('escape'=>false)); ?>
+        <?php
+            foreach ($filteredDishes as $dish): ?>
+                <div class="dish large-12 medium-8 columns">
+                    <div class="dish-delete">
+                        <?= $this->Form->postLink(
+                            $this->Html->tag('i', '',
+                                array('class' => 'fa fa-trash delete-icon')),
+                                array('action' => 'delete', $dish->id),
+                                array('escape'=>false)); ?>
+                    </div>
 
-        <!--<?= $this->Form->postLink("<i class='fa fa-trash'></i>", ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)], ['escape' => false]) ?>-->
-    </div>
+                    <div class="dishes medium-6 columns">
+                        <div class="columns">
+                            <h4><?= h($dish->subcategory) ?></h4>
+                                <h5 class="dish-title"><?= h($dish->title) ?></h5>
+                                <span class="dish-price">€<?= h($dish->price) ?></span>
+                        </div>
+                        <div class="columns">
+                            <p><?= h($dish->description) ?></p>
+                        </div>
+                    </div>
 
-    <div class="dish">
-        <div class="dishes medium-6 columns">
-            <div class="columns">
-                <h4><?= h($dish->subcategory) ?></h4>
-                    <h5 class="dish-title"><?= h($dish->title) ?></h5>
-                    <span class="dish-price">€<?= h($dish->price) ?></span>
-            </div>
-            <div class="columns">
-                <p><?= h($dish->description) ?></p>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="dish-edit">
-        <?= $this->Html->link("<i class='fa fa-pencil edit-icon'></i>", ['action' => 'edit', $dish->id], ['escape' => false]) ?>
-    </div>
-
-            <!--<td><?= h($dish->discount_title) ?></td>-->
-            <!--<td><?= h($dish->discount_amount) ?></td>-->
-            <!--<td><?= h($dish->discount_duration) ?></td>-->
-            <!--<span class="actions">
-                <?= $this->Html->link(__('Bekijken'), ['action' => 'view', $dish->id]) ?>
-                <?= $this->Html->link(__('Bewerken'), ['action' => 'edit', $dish->id]) ?>
-                <?= $this->Form->postLink(__('Verwijderen'), ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)]) ?>
-            </span>-->
-
-    <?php endforeach; ?>
+                    <div class="dish-edit">
+                        <?= $this->Html->link("<i class='fa fa-pencil edit-icon'></i>", ['action' => 'edit', $dish->id], ['escape' => false]) ?>
+                    </div>
+                </div>
+                        <!--<td><?= h($dish->discount_title) ?></td>-->
+                        <!--<td><?= h($dish->discount_amount) ?></td>-->
+                        <!--<td><?= h($dish->discount_duration) ?></td>-->
+            <?php endforeach; ?>
 </div>
-
-
-
-
-
 
 
 <!--<div class="dishes index large-9 medium-8 columns content">

@@ -28,6 +28,7 @@ $cakeDescription = 'Het Theehuis';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('custom.css') ?>
+    <!--<?= $this->Html->css('bulma.css') ?>-->
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

@@ -20,6 +20,10 @@
     background-color: gainsboro;
 }
 
+.dish {
+    margin-bottom: 1rem;
+}
+
 .dish-delete,
 .dish-edit {
     float: left;
