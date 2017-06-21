@@ -24,7 +24,7 @@
         $category = [ 'Kies een categorie...', 'Lunch', 'Diner', 'Dessert'];
         $subcategory = ['Kies een subcategorie...', 'Broodjes','Clubs','Wraps','Salades','Soep','Warm',
             'Kids','Stevige hap','Voorgerecht - Koud','Voorgerecht - Soep','Voorgerecht - Warm',
-            'Voorgerecht - Salades','Hoofdgerecht - Vis','Hoofdgerecht - Vegetarisch','Hoofdgerecht - Vlees'];
+            'Voorgerecht - Salades','Hoofdgerecht - Vis','Hoofdgerecht - Vegetarisch','Hoofdgerecht - Vlees', 'IJs'];
         //*********************************************************************************************************************************
         //
         //*********************************************************************************************************************************

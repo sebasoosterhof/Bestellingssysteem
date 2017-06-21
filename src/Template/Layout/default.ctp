@@ -32,6 +32,7 @@ $cakeDescription = 'Het Theehuis';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <script src="https://use.fontawesome.com/e6aaf199a7.js"></script>
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">

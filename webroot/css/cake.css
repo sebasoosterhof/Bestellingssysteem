@@ -499,16 +499,17 @@ div.message.hidden {
 }
 
 .content h3 {
-    color: #be140b;
+    color: #333333;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
 }
 
 .content h4 {
-    color: #be140b;
+    color: #333333;
+    font-weight: 800;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
-    border-bottom: 2px solid #be140b;
+    border-bottom: 2px solid #333333;
 }
 
 .content .related h4 {

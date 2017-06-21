@@ -9,7 +9,7 @@
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $dish->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $dish->id)]
+                ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>

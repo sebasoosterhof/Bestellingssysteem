@@ -14,3 +14,37 @@
 .clickable {
     cursor: pointer;
 }
+
+.dishes {
+    /*background-color: whitesmoke;*/
+    background-color: gainsboro;
+}
+
+.dish-delete,
+.dish-edit {
+    float: left;
+    margin-top: 4rem;
+}
+
+.delete-icon,
+.edit-icon {
+    font-size: 1.5rem !important;
+}
+
+.delete-icon {
+    margin-right: 1rem;
+}
+
+.edit-icon {
+    margin-left: 1rem;
+}
+
+.dish-title {
+    float: left;
+    font-weight: 800;
+}
+
+.dish-price {
+    float: right;
+    font-weight: 800;
+}

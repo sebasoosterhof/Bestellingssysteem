@@ -6,48 +6,106 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <!--<li class="heading"><?= __('Actions') ?></li>-->
         <li><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Gerechten bewerken'), ['action' => 'index']) ?></li>
     </ul>
+
+    <ul class="side-nav">
+        <li>
+            <?= $this->Html->link(__('Lunch'), ['onclick' => $filteredDishes = $lunchDishes]) ?>
+        </li>
+        <li>
+            <?= $this->Html->link(__('Diner'), ['onclick' => $filteredDishes = $dinerDishes]) ?>
+        </li>
+        <li>
+            <?= $this->Html->link(__('Dessert'), ['onclick' => $filteredDishes = $dessertDishes]) ?>
+        </li>
+    </ul>
 </nav>
-<div class="dishes index large-9 medium-8 columns content">
+
+
+<div class="index large-9 medium-8 columns content">
+    <?php foreach ($dessertDishes as $dish): ?>
+    <div class="dish-delete">
+        <?= $this->Form->postLink(
+            $this->Html->tag('i', '', array('class' => 'fa fa-trash delete-icon')). "",
+                    array('action' => 'delete', $dish->id),
+                    array('escape'=>false)); ?>
+
+        <!--<?= $this->Form->postLink("<i class='fa fa-trash'></i>", ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)], ['escape' => false]) ?>-->
+    </div>
+
+    <div class="dish">
+        <div class="dishes medium-6 columns">
+            <div class="columns">
+                <h4><?= h($dish->subcategory) ?></h4>
+                    <h5 class="dish-title"><?= h($dish->title) ?></h5>
+                    <span class="dish-price">€<?= h($dish->price) ?></span>
+            </div>
+            <div class="columns">
+                <p><?= h($dish->description) ?></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="dish-edit">
+        <?= $this->Html->link("<i class='fa fa-pencil edit-icon'></i>", ['action' => 'edit', $dish->id], ['escape' => false]) ?>
+    </div>
+
+            <!--<td><?= h($dish->discount_title) ?></td>-->
+            <!--<td><?= h($dish->discount_amount) ?></td>-->
+            <!--<td><?= h($dish->discount_duration) ?></td>-->
+            <!--<span class="actions">
+                <?= $this->Html->link(__('Bekijken'), ['action' => 'view', $dish->id]) ?>
+                <?= $this->Html->link(__('Bewerken'), ['action' => 'edit', $dish->id]) ?>
+                <?= $this->Form->postLink(__('Verwijderen'), ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)]) ?>
+            </span>-->
+
+    <?php endforeach; ?>
+</div>
+
+
+
+
+
+
+
+<!--<div class="dishes index large-9 medium-8 columns content">
     <h3><?= __('Dishes') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('category') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('subcategory') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('discount_title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('discount_amount') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('discount_duration') ?></th>
-                <!--<th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>-->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($dishes as $dish): ?>
-            <tr>
-                <td><?= $this->Number->format($dish->id) ?></td>
-                <td><?= h($dish->category) ?></td>
-                <td><?= h($dish->subcategory) ?></td>
-                <td><?= h($dish->title) ?></td>
-                <td><?= h($dish->price) ?></td>
-                <td><?= h($dish->discount_title) ?></td>
-                <td><?= h($dish->discount_amount) ?></td>
-                <td><?= h($dish->discount_duration) ?></td>
-                <!--<td><?= h($dish->created) ?></td>
-                <td><?= h($dish->modified) ?></td>-->
-                <td class="actions">
-                    <?= $this->Html->link(__('Bekijken'), ['action' => 'view', $dish->id]) ?>
-                    <?= $this->Html->link(__('Bewerken'), ['action' => 'edit', $dish->id]) ?>
-                    <?= $this->Form->postLink(__('Verwijderen'), ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)]) ?>
-                </td>
-            </tr>
+            <?php foreach ($lunchDishes as $dish): ?>
+
+                    <tr>
+                        <td><?= h($dish->category) ?></td>
+                        <td><?= h($dish->subcategory) ?></td>
+                        <td><?= h($dish->title) ?></td>
+                        <td><?= h($dish->description) ?></td>
+                        <td><?= h($dish->price) ?></td>
+                        <td><?= h($dish->discount_title) ?></td>
+                        <td><?= h($dish->discount_amount) ?></td>
+                        <td><?= h($dish->discount_duration) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('Bekijken'), ['action' => 'view', $dish->id]) ?>
+                            <?= $this->Html->link(__('Bewerken'), ['action' => 'edit', $dish->id]) ?>
+                            <?= $this->Form->postLink(__('Verwijderen'), ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u # {0} wilt verwijderen?', $dish->id)]) ?>
+                        </td>
+                    </tr>
+
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -61,4 +119,4 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} van {{pages}}, toont {{current}} gerecht(en) van {{count}} totaal')]) ?></p>
     </div>
-</div>
+</div>-->

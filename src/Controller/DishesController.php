@@ -24,6 +24,14 @@ class DishesController extends AppController
 
         $this->set(compact('dishes'));
         $this->set('_serialize', ['dishes']);
+
+        $lunchDishes = $this->Dishes->find('all')->where(['category' => 'Lunch']);
+        $dinerDishes = $this->Dishes->find('all')->where(['category' => 'Diner']);
+        $dessertDishes = $this->Dishes->find('all')->where(['category' => 'Dessert']);
+
+        $this->set('lunchDishes', $lunchDishes);
+        $this->set('dinerDishes', $dinerDishes);
+        $this->set('dessertDishes', $dessertDishes);
     }
 
     /**
@@ -54,11 +62,11 @@ class DishesController extends AppController
         if ($this->request->is('post')) {
             $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
             if ($this->Dishes->save($dish)) {
-                $this->Flash->success(__('The dish has been saved.'));
+                $this->Flash->success(__('Het gerecht is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The dish could not be saved. Please, try again.'));
+            $this->Flash->error(__('Het gerecht kon niet worden opgeslagen, probeer het opnieuw.'));
         }
         $this->set(compact('dish'));
         $this->set('_serialize', ['dish']);
@@ -79,11 +87,11 @@ class DishesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
             if ($this->Dishes->save($dish)) {
-                $this->Flash->success(__('The dish has been saved.'));
+                $this->Flash->success(__('Het gerecht is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The dish could not be saved. Please, try again.'));
+            $this->Flash->error(__('Het gerecht kon niet worden opgeslagen, probeer het opnieuw.'));
         }
         $this->set(compact('dish'));
         $this->set('_serialize', ['dish']);
@@ -101,9 +109,9 @@ class DishesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $dish = $this->Dishes->get($id);
         if ($this->Dishes->delete($dish)) {
-            $this->Flash->success(__('The dish has been deleted.'));
+            $this->Flash->success(__('Het gerecht is verwijderd.'));
         } else {
-            $this->Flash->error(__('The dish could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Het gerecht kon niet worden verwijderd, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);
