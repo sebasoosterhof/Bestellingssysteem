@@ -37,22 +37,23 @@ $cakeDescription = 'Het Theehuis';
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <!--<h1><a href=""><?= $this->fetch('title') ?></a></h1>-->
-                <h1><a href="">Het Theehuis</a></h1>
-            </li>
+        <ul class=" large-3 medium-4 columns">
+            <div class="logo">
+                <!--<li class="name">
+                    <h1><a href="/dishes/add">Het Theehuis</a></h1>
+                </li>-->
+            </div>
         </ul>
             <div class="top-bar-section">
                 <ul class="right">
-                   <?php if ($_SESSION['Auth']): ?>
+                   <?php if (isset($_SESSION['Auth'])) { ?>
                     <li class="logout-dropdown">
                         <span class="navbar-content accordion clickable"><?= $_SESSION['Auth']['User']['username']; ?></span>
                         <div class="panel">
                             <a href="/users/login" class="clickable">Uitloggen</a>
                         </div>
                     </li>
-                    <?php endif; ?>
+                    <?php } ?>
                 </ul>
             </div>
     </nav>
@@ -61,16 +62,6 @@ $cakeDescription = 'Het Theehuis';
         <?= $this->fetch('content') ?>
     </div>
     <footer>
-        <style>
-            div.panel {
-                padding: 0 18px;
-                background-color: white;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.2s ease-out;
-            }
-        </style>
-
         <script>
             var acc = document.getElementsByClassName("accordion");
             var i;

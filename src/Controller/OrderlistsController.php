@@ -8,6 +8,8 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\OrderlistsTable $Orderlists
  *
+ * @property \App\Model\Table\DishesTable $Dishes
+ *
  * @method \App\Model\Entity\Orderlist[] paginate($object = null, array $settings = [])
  */
 class OrderlistsController extends AppController
@@ -20,13 +22,31 @@ class OrderlistsController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Dishes');
+
         $this->paginate = [
             'contain' => ['Dishes']
         ];
+
         $orderlists = $this->paginate($this->Orderlists);
+
 
         $this->set(compact('orderlists'));
         $this->set('_serialize', ['orderlists']);
+
+        $lunchDishes = $this->Dishes->find('all')->where(['category' => 'Lunch']);
+        $dinerDishes = $this->Dishes->find('all')->where(['category' => 'Diner']);
+        $dessertDishes = $this->Dishes->find('all')->where(['category' => 'Dessert']);
+
+        $orders = ['Broodjes - Broodje gezond €2,50', 'Broodjes - Broodje gezond á la Ruurd €2,30'];
+        // $orders = array();
+
+
+        $this->set('lunchDishes', $lunchDishes);
+        $this->set('dinerDishes', $dinerDishes);
+        $this->set('dessertDishes', $dessertDishes);
+
+        $this->set('orders', $orders);
     }
 
     /**
@@ -112,5 +132,17 @@ class OrderlistsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function addDishToOrder($dish) {
+        global $order;
+        $orders = ['Broodjes - Broodje gezond €2,50', 'Broodjes - Broodje gezond á la Ruurd €2,30'];
+
+        $order = array_push($orders, $dish);
+
+        $this->set('orders', $orders);
+        var_dump($orders);
+
+        // return $this->redirect(['action' => 'index']);
     }
 }

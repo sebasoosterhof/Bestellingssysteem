@@ -1,3 +1,26 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: DINCondensed;
+}
+
+.top-bar {
+    background-image: url('../img/header.jpg') !important;
+}
+
+.logo {
+    display: block;
+    left: 17.4rem;
+    margin-left: 0;
+    position: absolute;
+    top: 2px;
+    width: 391px;
+    height: 133px;
+    background-image: url('../img/header-object.png');
+}
+
+.container {
+    background-image: url('../img/Bottom_texture.jpg');
+}
+
 .navbar-content {
     /*padding-right: 1rem;*/
     vertical-align: -webkit-baseline-middle;
@@ -5,6 +28,13 @@
     font-size: 1rem;
     color: white;
 }
+
+div.panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+            }
 
 .logout-dropdown {
     position: relative;
@@ -15,9 +45,10 @@
     cursor: pointer;
 }
 
-.dishes {
-    /*background-color: whitesmoke;*/
-    background-color: gainsboro;
+.divider {
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 1rem;
 }
 
 .dish {
@@ -25,9 +56,15 @@
 }
 
 .dish-delete,
-.dish-edit {
+.dish-edit,
+.dish-add-orderlist {
     float: left;
     margin-top: 4rem;
+}
+
+.order {
+    float: right;
+    width: 25%;
 }
 
 .delete-icon,
