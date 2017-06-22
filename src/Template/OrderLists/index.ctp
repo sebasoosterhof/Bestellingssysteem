@@ -1,4 +1,5 @@
 <?php
+//session_start();
 /**
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Orderlist[]|\Cake\Collection\CollectionInterface $orderlists
@@ -78,9 +79,7 @@
 
 
 <?php
-    $category = "";
     $filteredDishes = $lunchDishes;
-    $orderslist = $orders;
 ?>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -117,13 +116,14 @@
     <div class="order">
         <h5><b>Uw bestelling</b></h5>
         <?php
-            foreach ($orderslist as $order): ?>
-                <p><?= $order ?></p>
-                <!--<span class="dish-title"><?= h($dish->title) ?></span>-->
-                <!--<span class="dish-price">€<?= h($dish->price) ?></span>-->
-            <?php endforeach; ?>
+        //var_dump($this->request->session()->read('sessionOrders'));
+            foreach ($this->request->session()->read('sessionOrders') as $key => $value) { ?>
+                <p><?php echo $key ?></p>
+                <p><?php echo $value ?></p>
+            <?php } ?>
 
         <div class="divider"></div>
+        <!--TO DO: price calculation-->
         <p>Subtotaal €2,30</p>
         <?= $this->Form->button('Reserveren', array('hiddenField' => false)); ?>
     </div>
@@ -135,9 +135,15 @@
 
                         <?= $this->Form->postLink(
                             $this->Html->tag('i', '',
-                                array('class' => 'fa fa-plus delete-icon')),
+                                array('class' => 'fa fa-plus')),
                                 array('action' => 'addDishToOrder', $dish->title),
                                 array('escape'=>false)); ?>
+
+
+
+
+
+
 
                         <!--<form action="">
                             <input type="number" id="dishcount" min="0" max="9"/>

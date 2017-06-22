@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+
 /**
  * Orderlists Controller
  *
@@ -12,8 +13,10 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Orderlist[] paginate($object = null, array $settings = [])
  */
+session_start();
 class OrderlistsController extends AppController
 {
+public $orders = [];
 
     /**
      * Index method
@@ -22,6 +25,11 @@ class OrderlistsController extends AppController
      */
     public function index()
     {
+        if ($this->request->session()->read('orders')) {
+            $this->orders = $this->request->session()->write('orders', $this->orders);
+            $this->orders = $this->request->session()->read('orders');
+        }
+
         $this->loadModel('Dishes');
 
         $this->paginate = [
@@ -38,15 +46,13 @@ class OrderlistsController extends AppController
         $dinerDishes = $this->Dishes->find('all')->where(['category' => 'Diner']);
         $dessertDishes = $this->Dishes->find('all')->where(['category' => 'Dessert']);
 
-        $orders = ['Broodjes - Broodje gezond €2,50', 'Broodjes - Broodje gezond á la Ruurd €2,30'];
-        // $orders = array();
-
-
         $this->set('lunchDishes', $lunchDishes);
         $this->set('dinerDishes', $dinerDishes);
         $this->set('dessertDishes', $dessertDishes);
 
-        $this->set('orders', $orders);
+        $this->set('orders', $this->orders);
+
+        // var_dump($_SESSION);
     }
 
     /**
@@ -121,7 +127,7 @@ class OrderlistsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete()
     {
         $this->request->allowMethod(['post', 'delete']);
         $orderlist = $this->Orderlists->get($id);
@@ -135,14 +141,14 @@ class OrderlistsController extends AppController
     }
 
     public function addDishToOrder($dish) {
-        global $order;
-        $orders = ['Broodjes - Broodje gezond €2,50', 'Broodjes - Broodje gezond á la Ruurd €2,30'];
 
-        $order = array_push($orders, $dish);
+        array_push($this->orders, $dish);
 
-        $this->set('orders', $orders);
-        var_dump($orders);
+        $this->request->session()->write('sessionOrders', $this->orders);
 
-        // return $this->redirect(['action' => 'index']);
+
+        //var_dump($this->request->session()->read('orders'));
+        //die();
+        return $this->redirect(['action' => 'index']);
     }
 }

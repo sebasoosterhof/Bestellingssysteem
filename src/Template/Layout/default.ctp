@@ -28,8 +28,6 @@ $cakeDescription = 'Het Theehuis';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('custom.css') ?>
-    <!--<?= $this->Html->css('bulma.css') ?>-->
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -38,11 +36,7 @@ $cakeDescription = 'Het Theehuis';
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class=" large-3 medium-4 columns">
-            <div class="logo">
-                <!--<li class="name">
-                    <h1><a href="/dishes/add">Het Theehuis</a></h1>
-                </li>-->
-            </div>
+            <div class="logo"></div>
         </ul>
             <div class="top-bar-section">
                 <ul class="right">
@@ -67,15 +61,15 @@ $cakeDescription = 'Het Theehuis';
             var i;
 
             for (i = 0; i < acc.length; i++) {
-            acc[i].onclick = function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight){
-                panel.style.maxHeight = null;
-                } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
+                acc[i].onclick = function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight){
+                    panel.style.maxHeight = null;
+                    } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
                 }
-            }
             }
         </script>
     </footer>
