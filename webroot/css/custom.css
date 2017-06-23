@@ -23,6 +23,7 @@ body {
 
 .container {
     background-image: url('../img/Bottom_texture.jpg');
+
 }
 
 .navbar-content {
@@ -38,7 +39,22 @@ div.panel {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-            }
+}
+
+.login-container {
+    width: 100%;
+}
+
+.login-title {
+    padding: 15px;
+}
+
+.login-form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 10rem;
+}
 
 .logout-dropdown {
     position: relative;
@@ -92,4 +108,36 @@ div.panel {
 .dish-price {
     float: right;
     font-weight: 800;
+}
+
+.footer {
+    background-image: url('../img/footer.jpg');
+    height: 135px;
+    color: white;
+}
+
+.footer-left{
+    float: left;
+    position: relative;
+    left: 5%;
+    top: 10%;
+}
+
+.footer-middle {
+    float: left;
+    left: 25%;
+    position: relative;
+    top: 10%;
+}
+
+.footer-right {
+    float: left;
+    position: relative;
+    left: 40%;
+    top: 60%;
+}
+
+.wifi {
+    margin: 0px 0px 5px 100px;
+    border: 0px solid #000000;
 }

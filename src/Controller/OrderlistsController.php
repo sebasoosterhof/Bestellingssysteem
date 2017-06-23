@@ -51,8 +51,6 @@ public $orders = [];
         $this->set('dessertDishes', $dessertDishes);
 
         $this->set('orders', $this->orders);
-
-        // var_dump($_SESSION);
     }
 
     /**

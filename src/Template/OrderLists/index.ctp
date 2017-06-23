@@ -116,9 +116,7 @@
     <div class="order">
         <h5><b>Uw bestelling</b></h5>
         <?php
-        //var_dump($this->request->session()->read('sessionOrders'));
             foreach ($this->request->session()->read('sessionOrders') as $key => $value) { ?>
-                <p><?php echo $key ?></p>
                 <p><?php echo $value ?></p>
             <?php } ?>
 

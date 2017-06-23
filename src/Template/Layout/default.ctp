@@ -56,6 +56,27 @@ $cakeDescription = 'Het Theehuis';
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+        <div class="footer">
+            <div class="footer-left">
+                <img class="wifi" alt="wifi" src="http://www.hettheehuis.nl/images/wifi.png" height="69" width="100">
+                <p> Ons terras is voorzien van
+                    gratis draadloos internet.
+            </div>
+            <div class="footer-middle">
+                <br>
+                    Meersweg 9, 9001BG Grou
+                </br>
+                    Telefoon: 0566 - 621630
+                <br>
+                    E-mail: info@hettheehuis.nl
+                </br>
+            </div>
+            <div class="footer-right">
+                ©2017 Het Theehuis. Alle rechten voorbehouden.
+                Ontwikkeld door <a href="https://www.linkedin.com/in/sebastian-oosterhof-b92021137/" style="color:white;"><b>Sebastian Oosterhof</b></a>.
+            </div>
+
+        </div>
         <script>
             var acc = document.getElementsByClassName("accordion");
             var i;
