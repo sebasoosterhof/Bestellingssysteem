@@ -5,27 +5,24 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Orderlists'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Dishes'), ['controller' => 'Dishes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Dish'), ['controller' => 'Dishes', 'action' => 'add']) ?></li>
+        <li class="link"><?= $this->Html->link(__('Reserveringen overzicht'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="orderlists form large-9 medium-8 columns content">
     <?= $this->Form->create($orderlist) ?>
     <fieldset>
-        <legend><?= __('Add Orderlist') ?></legend>
+        <legend><?= __('Voeg reservering toe') ?></legend>
         <?php
-            echo $this->Form->control('reservation_date');
-            echo $this->Form->control('reseration_time');
-            echo $this->Form->control('persons');
-            echo $this->Form->control('lastname');
-            echo $this->Form->control('email');
-            echo $this->Form->control('telephonenumber');
-            echo $this->Form->control('copmany_name');
-            echo $this->Form->control('dish_id', ['options' => $dishes, 'empty' => true]);
+            echo $this->Form->control('reservation_date', array('label' => 'Reserveringsdatum'));
+            echo $this->Form->control('reservation_time', array('label' => 'Reserveringstijd'));
+            echo $this->Form->control('persons', array('label' => 'Aantal personen'));
+            echo $this->Form->control('lastname', array('label' => 'Achternaam'));
+            echo $this->Form->control('email', array('label' => 'E-mail'));
+            echo $this->Form->control('telephonenumber', array('label' => 'Telefoonnummer'));
+            echo $this->Form->control('copmany_name', array('label' => 'Bedrijfsnaam'));
+            // echo $this->Form->control('dish_id', array('label' => 'Gerecht'), ['options' => $dishes, 'empty' => true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Toevoegen')) ?>
     <?= $this->Form->end() ?>
 </div>

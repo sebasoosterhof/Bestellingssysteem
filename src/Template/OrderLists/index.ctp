@@ -1,5 +1,4 @@
 <?php
-//session_start();
 /**
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Orderlist[]|\Cake\Collection\CollectionInterface $orderlists
@@ -34,9 +33,14 @@
         <ul class="side-nav">
         <h5><b>Reservering</b></h5>
             <!--TO DO: Fetch reservation data from plugin on website: http://www.hettheehuis.nl -->
-            <li>Datum: 17-06-2017</li>
-            <li>Tijd: 19:45</li>
-            <li>Aantal personen: 2 </li>
+            <?php
+                foreach($orderlists as $key => $value) { ?>
+                    <li>Datum: <?php echo $value['reservation_date'] ?></li>
+                    <li>Tijd:  <?php echo $time = date("H:i",strtotime($value['reservation_time']));  ?></li>
+                    <li>Aantal personen:  <?php echo $value['persons'] ?></li>
+            <?php } ?>
+
+
         </ul>
 </nav>
 

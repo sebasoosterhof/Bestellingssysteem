@@ -63,9 +63,9 @@ class OrderlistsTable extends Table
             ->notEmpty('reservation_date');
 
         $validator
-            ->time('reseration_time')
-            ->requirePresence('reseration_time', 'create')
-            ->notEmpty('reseration_time');
+            ->time('reservation_time')
+            ->requirePresence('reservation_time', 'create')
+            ->notEmpty('reservation_time');
 
         $validator
             ->integer('persons')

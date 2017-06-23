@@ -36,7 +36,7 @@ $cakeDescription = 'Het Theehuis';
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class=" large-3 medium-4 columns">
-            <div class="logo"></div>
+            <a href="http://www.hettheehuis.nl/"><div class="logo"></div></a>
         </ul>
             <div class="top-bar-section">
                 <ul class="right">

@@ -52,7 +52,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Reseration Time') ?></th>
-            <td><?= h($orderlist->reseration_time) ?></td>
+            <td><?= h($orderlist->reservation_time) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>

@@ -85,7 +85,7 @@
             <tr>
                 <td><?= h($orderlists->id) ?></td>
                 <td><?= h($orderlists->reservation_date) ?></td>
-                <td><?= h($orderlists->reseration_time) ?></td>
+                <td><?= h($orderlists->reservation_time) ?></td>
                 <td><?= h($orderlists->persons) ?></td>
                 <td><?= h($orderlists->lastname) ?></td>
                 <td><?= h($orderlists->email) ?></td>

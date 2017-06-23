@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property \Cake\I18n\FrozenDate $reservation_date
- * @property \Cake\I18n\FrozenTime $reseration_time
+ * @property \Cake\I18n\FrozenTime $reservation_time
  * @property int $persons
  * @property string $lastname
  * @property string $email

@@ -123,7 +123,7 @@ class UsersController extends AppController
     public function initialize() {
         parent::initialize();
         $this->Auth->allow(['login', 'logout', 'add', 'orderlists']);
-        // $this->Auth->allow(array('controller' => 'OrderlistsController', 'action' => 'index'));
+        $this->Auth->allow(array('controller' => 'OrderlistsController', 'action' => 'index'));
     }
 
     public function logout() {

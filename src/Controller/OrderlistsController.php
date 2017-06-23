@@ -49,6 +49,8 @@ class OrderlistsController extends AppController
         $this->set('dessertDishes', $dessertDishes);
 
         $this->set('orders', $this->orders);
+
+        $this->set('reservations', $this->orderlists);
     }
 
     /**
@@ -79,11 +81,11 @@ class OrderlistsController extends AppController
         if ($this->request->is('post')) {
             $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->getData());
             if ($this->Orderlists->save($orderlist)) {
-                $this->Flash->success(__('The orderlist has been saved.'));
+                $this->Flash->success(__('De reservering is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The orderlist could not be saved. Please, try again.'));
+            $this->Flash->error(__('De reservering kon niet opgeslagen worden, probeer het opnieuw.'));
         }
         $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
         $this->set(compact('orderlist', 'dishes'));
@@ -105,11 +107,11 @@ class OrderlistsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->getData());
             if ($this->Orderlists->save($orderlist)) {
-                $this->Flash->success(__('The orderlist has been saved.'));
+                $this->Flash->success(__('De reservering is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The orderlist could not be saved. Please, try again.'));
+            $this->Flash->error(__('De reservering kon niet opgeslagen worden, probeer het opnieuw.'));
         }
         $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
         $this->set(compact('orderlist', 'dishes'));
@@ -128,9 +130,9 @@ class OrderlistsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $orderlist = $this->Orderlists->get($id);
         if ($this->Orderlists->delete($orderlist)) {
-            $this->Flash->success(__('The orderlist has been deleted.'));
+            $this->Flash->success(__('De reservering is verwijderd.'));
         } else {
-            $this->Flash->error(__('The orderlist could not be deleted. Please, try again.'));
+            $this->Flash->error(__('De reservering kon niet verwijderd worden, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -149,8 +151,6 @@ class OrderlistsController extends AppController
         $count = count($this->request->session()->read('sessionOrders')); // counts the number of dishes in sessionOrders.
         $this->request->session()->write('sessionOrders.'.$count, $this->Orderlists->Dishes->get($id, array('subcategory','title','price'))); // adds the dish after the previous dish if there is one.
 
-        // var_dump($this->request->session()->read('sessionOrders'));
-        // die;
         return $this->redirect(['action' => 'index']);
     }
 
@@ -162,7 +162,6 @@ class OrderlistsController extends AppController
      *
      */
     public function removeDishFromOrder($id) {
-        // error_reporting(0);
         $dish = $this->Orderlists->Dishes->get($id);
 
         $tempOrder = $this->request->session()->read('sessionOrders');
@@ -178,12 +177,6 @@ class OrderlistsController extends AppController
                 $this->request->session()->write('sessionOrders', $tempOrder);
             }
         }
-
-        // if(empty($this->request->session()->check('sessionOrders'))) {
-        //     $this->request->session()->delete('sessionOrders');
-
-        //     return $this->redirect(['action' => 'index']);
-        // }
 
         return $this->redirect(['action' => 'index']);
     }
