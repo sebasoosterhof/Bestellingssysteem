@@ -57,7 +57,7 @@
                         <div class="columns">
                             <h4><?= h($dish->subcategory) ?></h4>
                             <h5 class="dish-title"><?= h($dish->title) ?></h5>
-                            <span class="dish-price">€<?= h($dish->price) ?></span>
+                            <span class="dish-price">€<?php echo number_format(h($dish->price),2) ?></span>
                         </div>
                         <div class="columns">
                             <p><?= h($dish->description) ?></p>

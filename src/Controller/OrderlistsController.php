@@ -48,7 +48,7 @@ class OrderlistsController extends AppController
         $this->set('dinerDishes', $dinerDishes);
         $this->set('dessertDishes', $dessertDishes);
 
-        $this->set('orders', $this->orders);
+        // $this->set('orders', $this->orders);
 
         $this->set('reservations', $this->orderlists);
     }

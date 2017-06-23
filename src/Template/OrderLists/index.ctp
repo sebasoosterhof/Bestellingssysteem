@@ -71,18 +71,23 @@
                                 ]
                             );
 
-                        echo $value['subcategory'] ?> - <?php echo $value['title']?> <?php echo $value['price']?></p>
-            <?php } } ?>
+                        echo $value['subcategory'] ?> - <?php echo $value['title']?> <?php echo number_format($value['price'],2) ?></p>
+            <?php
+                }
+            } ?>
 
         <div class="divider"></div>
-        <!--TO DO: price calculation-->
-        <?php
-            $totalprice = $this->request->session()->read('sessionOrders')
 
+        <?php
+            $totalPrice = array();
+            foreach ($this->request->session()->read('sessionOrders') as $key => $value) {
+                array_push($totalPrice, $value['price']);
+            }
         ?>
 
 
-        <p>Subtotaal €2,30</p>
+        <p>Subtotaal €<?php echo number_format(array_sum($totalPrice),2) ?> excl. dranken</p>
+
         <?= $this->Form->button('Reserveren',
             array('action' => 'deleteOrders'),
             array('hiddenField' => false)
@@ -99,18 +104,13 @@
                                 array('class' => 'fa fa-plus')),
                                 array('action' => 'addDishToOrder', $dish->id),
                                 array('escape'=>false)); ?>
-
-                        <!--<form action="">
-                            <input type="number" id="dishcount" min="0" max="9"/>
-                            <input type="submit">Gerecht(en) toevoegen</input>
-                        </form>-->
                     </div>
 
                     <div class="medium-8 columns">
                         <div class="columns">
                             <h4><?= h($dish->subcategory) ?></h4>
                             <h5 class="dish-title"><?= h($dish->title) ?></h5>
-                            <span class="dish-price">€<?= h($dish->price) ?></span>
+                            <span class="dish-price">€<?php echo number_format(h($dish->price),2) ?></span>
                         </div>
                         <div class="columns">
                             <p><?= h($dish->description) ?></p>
