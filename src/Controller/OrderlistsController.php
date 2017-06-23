@@ -148,9 +148,10 @@ public $orders = [];
     public function addDishToOrder($id) {
         $dish = $this->Orderlists->Dishes->get($id);
 
-        array_push($this->orders, $dish);
 
-        $this->request->session()->write('sessionOrders', $this->orders);
+
+        $count = count($this->request->session()->read('sessionOrders')); // counts the number of dishes in sessionOrders.
+        $this->request->session()->write('sessionOrders.'.$count, $this->Orderlists->Dishes->get($id, array('subcategory','title','price'))); // adds the dish after the previous dish if there is one.
 
         return $this->redirect(['action' => 'index']);
     }
