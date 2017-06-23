@@ -16,8 +16,6 @@ use App\Controller\AppController;
 session_start();
 class OrderlistsController extends AppController
 {
-public $orders = [];
-
     /**
      * Index method
      *
@@ -141,17 +139,63 @@ public $orders = [];
     /**
      * addDishToOrder method
      *
-     * @param $dish
+     * @param $id
      * @return \Cake\Http\Response|null Redirects to index.
      *
      */
     public function addDishToOrder($id) {
         $dish = $this->Orderlists->Dishes->get($id);
 
-
-
         $count = count($this->request->session()->read('sessionOrders')); // counts the number of dishes in sessionOrders.
         $this->request->session()->write('sessionOrders.'.$count, $this->Orderlists->Dishes->get($id, array('subcategory','title','price'))); // adds the dish after the previous dish if there is one.
+
+        // var_dump($this->request->session()->read('sessionOrders'));
+        // die;
+        return $this->redirect(['action' => 'index']);
+    }
+
+     /**
+     * removeDishFromOrder method
+     *
+     * @param $id
+     * @return \Cake\Http\Response|null Redirects to index.
+     *
+     */
+    public function removeDishFromOrder($id) {
+        // error_reporting(0);
+        $dish = $this->Orderlists->Dishes->get($id);
+
+        $tempOrder = $this->request->session()->read('sessionOrders');
+        if(count($tempOrder) === 1) {
+            $this->request->session()->delete('sessionOrders');
+        }
+        else if(!empty($tempOrder)) {
+            for ($i=0; $i<count($tempOrder); $i++) {
+                    if($tempOrder[$i]['id'] == $id) {
+                        unset($tempOrder[$i]);
+                        $tempOrder = array_values($tempOrder);
+                    }
+                $this->request->session()->write('sessionOrders', $tempOrder);
+            }
+        }
+
+        // if(empty($this->request->session()->check('sessionOrders'))) {
+        //     $this->request->session()->delete('sessionOrders');
+
+        //     return $this->redirect(['action' => 'index']);
+        // }
+
+        return $this->redirect(['action' => 'index']);
+    }
+
+     /**
+     * deleteOrders method
+     *
+     * @return \Cake\Http\Response|null Redirects to index.
+     *
+     */
+    public function deleteOrders() {
+        $this->request->session()->delete('sessionOrders');
 
         return $this->redirect(['action' => 'index']);
     }

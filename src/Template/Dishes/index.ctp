@@ -11,8 +11,8 @@
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Gerechten bewerken'), ['action' => 'index']) ?></li>
+        <li class="link"><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>
+        <li class="link"><?= $this->Html->link(__('Gerechten bewerken'), ['action' => 'index']) ?></li>
     </ul>
 
     <ul class="side-nav">
@@ -30,9 +30,9 @@
                     $filteredDishes = $dessertDishes;
                 }
             }  ?>
-        <li><a href="?kaarten=lunch">Lunch</a></li>
-        <li><a href="?kaarten=diner">Diner</a></li>
-        <li><a href="?kaarten=dessert">Dessert</a></li>
+        <li><a href="?kaarten=lunch" class="link">Lunch</a></li>
+        <li><a href="?kaarten=diner" class="link">Diner</a></li>
+        <li><a href="?kaarten=dessert" class="link">Dessert</a></li>
     </ul>
 </nav>
 

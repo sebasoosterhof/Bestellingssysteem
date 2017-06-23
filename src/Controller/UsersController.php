@@ -128,6 +128,7 @@ class UsersController extends AppController
 
     public function logout() {
         $this->Flash->success('U bent nu uitgelogd.');
+
         return $this->redirect($this->Auth->logout());
     }
 }
