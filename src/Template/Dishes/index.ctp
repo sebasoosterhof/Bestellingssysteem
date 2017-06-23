@@ -40,14 +40,17 @@
         <?php
 
             foreach ($filteredDishes as $dish): ?>
-                <!--<td><?= $dish->has('dish') ? $this->Html->link($orderlist->dish->title, ['controller' => 'Dishes', 'action' => 'view', $orderlist->dish->id]) : '' ?></td>-->
                 <div class="dish large-12 medium-8 columns">
                     <div class="dish-delete">
-                        <?= $this->Form->postLink(
-                            $this->Html->tag('i', '',
-                                array('class' => 'fa fa-trash delete-icon')),
-                                array('action' => 'delete', $dish->id),
-                                array('escape'=>false)); ?>
+                        <?=
+                            $this->Form->postLink('<i class="fa fa-trash delete-icon"></i> ',
+                                    ['action' => 'delete', $dish->id],
+                                    [
+                                        'escape' => false,
+                                        'confirm' => __('Weet u zeker dat u {0} wilt verwijderen?', $dish->title)
+                                    ]
+                                )
+                        ?>
                     </div>
 
                     <div class="medium-6 columns">
@@ -65,8 +68,5 @@
                         <?= $this->Html->link("<i class='fa fa-pencil edit-icon'></i>", ['action' => 'edit', $dish->id], ['escape' => false]) ?>
                     </div>
                 </div>
-                        <!--<td><?= h($dish->discount_title) ?></td>-->
-                        <!--<td><?= h($dish->discount_amount) ?></td>-->
-                        <!--<td><?= h($dish->discount_duration) ?></td>-->
             <?php endforeach; ?>
 </div>
