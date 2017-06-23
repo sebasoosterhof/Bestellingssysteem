@@ -45,7 +45,7 @@
         <h5><b>Uw bestelling</b></h5>
         <?php
             foreach ($this->request->session()->read('sessionOrders') as $key => $value) { ?>
-                <p><?php echo $value ?></p>
+                <p><?php echo $value['subcategory'] ?> - <?php echo $value['title']?> <?php echo $value['price']?></p>
             <?php } ?>
 
         <div class="divider"></div>
@@ -62,16 +62,13 @@
                         <?= $this->Form->postLink(
                             $this->Html->tag('i', '',
                                 array('class' => 'fa fa-plus')),
-                                array('action' => 'addDishToOrder', $dish->title),
+                                array('action' => 'addDishToOrder', $dish->id),
                                 array('escape'=>false)); ?>
 
                         <!--<form action="">
                             <input type="number" id="dishcount" min="0" max="9"/>
                             <input type="submit">Gerecht(en) toevoegen</input>
                         </form>-->
-                        <!--<?= $this->Form->checkbox('checkbox', [array_push($orders, $dish)], ['escape'=>false]); ?>-->
-
-                        <!--<?= $this->Form->checkbox('checkbox', array('hiddenField' => false)); ?>-->
                     </div>
 
                     <div class="medium-8 columns">

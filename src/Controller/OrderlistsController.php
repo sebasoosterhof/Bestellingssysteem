@@ -138,15 +138,20 @@ public $orders = [];
         return $this->redirect(['action' => 'index']);
     }
 
-    public function addDishToOrder($dish) {
+    /**
+     * addDishToOrder method
+     *
+     * @param $dish
+     * @return \Cake\Http\Response|null Redirects to index.
+     *
+     */
+    public function addDishToOrder($id) {
+        $dish = $this->Orderlists->Dishes->get($id);
 
         array_push($this->orders, $dish);
 
         $this->request->session()->write('sessionOrders', $this->orders);
 
-
-        //var_dump($this->request->session()->read('orders'));
-        //die();
         return $this->redirect(['action' => 'index']);
     }
 }
