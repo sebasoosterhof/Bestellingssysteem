@@ -34,7 +34,7 @@ header .header-title {
 }
 
 legend {
-    color:#15848F;
+    color:#333;
 }
 
 .row {
@@ -323,7 +323,7 @@ pre {
 }
 
 .top-bar.expanded, .top-bar,.top-bar-section ul li,.top-bar-section li:not(.has-form) a:not(.button) {
-    background: #116d76;
+    /*background: #333;*/
 }
 
 .top-bar-section li:not(.has-form) a:not(.button):hover {
@@ -339,8 +339,12 @@ pre {
     padding: 0.4375rem 0.875rem;
 }
 
-#actions-sidebar {
-    background: #fafafa;
+#actions-sidebar,
+#actions-sidebar h5,
+#actions-sidebar a {
+    /*background: #fafafa;*/
+    background-color: #156570;
+    color: white;
 }
 
 .index table {
@@ -389,7 +393,7 @@ fieldset {
 }
 
 fieldset legend {
-    border-bottom: 2px solid #1798A5;
+    border-bottom: 2px solid #333;
     width: 100%;
     line-height: 2rem;
 }
@@ -401,12 +405,12 @@ fieldset legend {
 }
 
 .form button:hover, .form button:focus {
-    background: #BE840B;
+    background: #1798A5;
     box-shadow: none;
 }
 
 button {
-    background: #966600;
+    background: #1798A5;
 }
 
 div.message {
@@ -482,7 +486,8 @@ div.message.hidden {
 /* Use 'one true layout' methods to get equal height columns */
 .container {
     overflow: hidden;
-    min-height: 92%; /* full height almost always */
+    /*min-height: 92%; full height almost always */
+    min-height: 72.4%; /* full height almost always */
 }
 
 /* Force equal height by overflowing */
@@ -499,16 +504,19 @@ div.message.hidden {
 }
 
 .content h3 {
-    color: #be140b;
+    color: #333333;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
+    font-family: DINCondensed;
 }
 
 .content h4 {
-    color: #be140b;
+    color: #333333;
+    font-weight: 800;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
-    border-bottom: 2px solid #be140b;
+    border-bottom: 2px solid #333333;
+    font-family: DINCondensed;
 }
 
 .content .related h4 {
