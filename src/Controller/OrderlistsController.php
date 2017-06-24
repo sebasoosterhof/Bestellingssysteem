@@ -1,4 +1,11 @@
 <?php
+// =================================================================
+// @Author: Sebastian Oosterhof
+// @Description: handles OrderlistsController index, view, add, edit, delete, addDishToOrder, removeDishFromOrder and deleteOrders functions.
+// @Version: 1.0
+// @Date: 26-06-2017
+// =================================================================
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -47,8 +54,6 @@ class OrderlistsController extends AppController
         $this->set('lunchDishes', $lunchDishes);
         $this->set('dinerDishes', $dinerDishes);
         $this->set('dessertDishes', $dessertDishes);
-
-        // $this->set('orders', $this->orders);
 
         $this->set('reservations', $this->orderlists);
     }

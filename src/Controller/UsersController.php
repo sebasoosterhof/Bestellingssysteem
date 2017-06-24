@@ -1,4 +1,11 @@
 <?php
+// =================================================================
+// @Author: Sebastian Oosterhof
+// @Description: handles UsersController index, view, add, edit and delete functions.
+// @Version: 1.0
+// @Date: 26-06-2017
+// =================================================================
+
 namespace App\Controller;
 
 use App\Controller\AppController;

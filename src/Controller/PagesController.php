@@ -1,4 +1,11 @@
 <?php
+// =================================================================
+// @Author: Sebastian Oosterhof
+// @Description: handles PagesController display function.
+// @Version: 1.0
+// @Date: 26-06-2017
+// =================================================================
+
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)

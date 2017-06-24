@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 /**
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Dish $dish
@@ -8,11 +8,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li class="link"><?= $this->Html->link(__('Edit Dish'), ['action' => 'edit', $dish->id]) ?> </li>
-        <li class="link"><?= $this->Form->postLink(__('Verwijder gerecht'), ['action' => 'delete', $dish->id], ['confirm' => __('Are you sure you want to delete # {0}?', $dish->id)]) ?> </li>
+        <li class="link"><?= $this->Form->postLink(__('Verwijder gerecht'), ['action' => 'delete', $dish->id], ['confirm' => __('Weet u zeker dat u {0} wilt verwijderen?', $dish->title)]) ?> </li>
         <li class="link"><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>
         <li class="link"><?= $this->Html->link(__('Gerechten bewerken'), ['action' => 'index']) ?></li>
-        <!--<li><?= $this->Html->link(__('List Orderlists'), ['controller' => 'Orderlists', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Orderlist'), ['controller' => 'Orderlists', 'action' => 'add']) ?> </li>-->
     </ul>
 </nav>
 <div class="dishes view large-9 medium-8 columns content">
@@ -104,4 +102,4 @@
         </table>
         <?php endif; ?>
     </div>
-</div>
+</div>-->

@@ -1,4 +1,11 @@
 <?php
+// =================================================================
+// @Author: Sebastian Oosterhof
+// @Description: handles DishcategoryTable initialize and validationDefault functions.
+// @Version: 1.0
+// @Date: 26-06-2017
+// =================================================================
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;

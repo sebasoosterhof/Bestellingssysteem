@@ -1,4 +1,11 @@
 <?php
+// =================================================================
+// @Author: Sebastian Oosterhof
+// @Description: handles DishesTable initialize and validationDefault functions.
+// @Version: 1.0
+// @Date: 26-06-2017
+// =================================================================
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -40,7 +47,7 @@ class DishesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Orderlists', [
+        $this->belongsTo('Orderlists', [
             'foreignKey' => 'dish_id'
         ]);
     }

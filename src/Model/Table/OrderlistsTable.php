@@ -1,4 +1,11 @@
 <?php
+// =================================================================
+// @Author: Sebastian Oosterhof
+// @Description: handles OrderlistsTable initialize and validationDefault functions.
+// @Version: 1.0
+// @Date: 26-06-2017
+// =================================================================
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -40,9 +47,11 @@ class OrderlistsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Dishes', [
-            'foreignKey' => 'dish_id'
+         $this->hasMany('Dishes', [
+            'foreignKey' => 'id',
+            'joinType' => 'INNER'
         ]);
+
     }
 
     /**

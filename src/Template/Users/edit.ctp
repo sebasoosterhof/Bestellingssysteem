@@ -5,25 +5,24 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Medewerker verwijderen'),
                 ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
+                ['confirm' => __('Weet u zeker dat u {0} wilt verwijderen?', $user->username)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Medewerkers overzicht'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
-        <legend><?= __('Edit User') ?></legend>
+        <legend><?= __('Bewerk medewerker') ?></legend>
         <?php
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
+            echo $this->Form->control('username', array('label' => 'Gebruikersnaam'));
+            echo $this->Form->control('password', array('label' => 'Wachtwoord'));
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Bewerken')) ?>
     <?= $this->Form->end() ?>
 </div>

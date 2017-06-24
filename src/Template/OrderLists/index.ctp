@@ -80,18 +80,21 @@
 
         <?php
             $totalPrice = array();
-            foreach ($this->request->session()->read('sessionOrders') as $key => $value) {
-                array_push($totalPrice, $value['price']);
+            if ($this->request->session()->check('sessionOrders')) {
+                foreach ($this->request->session()->read('sessionOrders') as $key => $value) {
+                    array_push($totalPrice, $value['price']);
+                }
             }
         ?>
 
+        <p>Subtotaal €<?php echo number_format(array_sum($totalPrice),2) ?> (excl. dranken)</p>
 
-        <p>Subtotaal €<?php echo number_format(array_sum($totalPrice),2) ?> excl. dranken</p>
-
-        <?= $this->Form->button('Reserveren',
-            array('action' => 'deleteOrders'),
-            array('hiddenField' => false)
-        ); ?>
+        <?php
+            echo $this->Html->link(
+                'Reserveren',
+                'http://www.hettheehuis.nl',
+                ['class' => 'button']
+            ); ?>
     </div>
 
         <?php
