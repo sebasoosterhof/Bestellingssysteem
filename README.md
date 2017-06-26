@@ -1,51 +1,16 @@
-# CakePHP Application Skeleton
+# Bestellingssysteem
 
 [![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
 [![License](https://img.shields.io/packagist/l/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
 
-A skeleton for creating applications with [CakePHP](http://cakephp.org) 3.x.
+Voor het toevoegen, tonen, bewerken en verwijderen van gerechten.
 
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+## Installatie
 
-## Installation
-
-1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
-
-If Composer is installed globally, run
-
-```bash
-composer create-project --prefer-dist cakephp/app
-```
-
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
-```bash
-composer create-project --prefer-dist cakephp/app myapp
-```
-
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
-
-```bash
-bin/cake server -p 8765
-```
-
-Then visit `http://localhost:8765` to see the welcome page.
-
-## Update
-
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
-
-## Configuration
-
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
-
-## Layout
-
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
+1.	Klik op ‘Clone or download’.
+2.	Klik vervolgens op ‘Download zip’. Het project wordt als zip bestand gedownload.
+3.	Pak het bestand ‘Bestellingssysteem-master.zip’ uit en open de map in Visual Code. 
+4.	Start Wampserver en controleer of alle services werken.
+5.	In PHPMyAdmin, klik op importeren om een database te importeren. Kies vervolgens uit de Bestellingssysteem-map het bestand ‘```order_application.sql```’. Na op starten geklikt te hebben zal de database geïmporteerd worden.
+6.	Open de terminal in Visual Code (sneltoets: ‘```Ctrl + ~’```) en typ: ‘```bin/cake server```’. Een url waar het project op gehost wordt, zal getoond worden in de terminal.
+7.	Het project is nu gereed voor testen en aanpassingen.
