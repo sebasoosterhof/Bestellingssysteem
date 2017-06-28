@@ -1,0 +1,147 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: DINCondensed;
+}
+
+body {
+    font-family: DINCondensed;
+}
+
+ .link:hover {
+    font-size: 1rem;
+    font-weight: 800;
+ }
+
+.top-bar {
+    background-image: url('../img/header.jpg') !important;
+}
+
+.logo {
+    display: block;
+    left: 17.4rem;
+    margin-left: 0;
+    position: absolute;
+    top: 2px;
+    width: 391px;
+    height: 133px;
+    background-image: url('../img/header-object.png');
+}
+
+.container {
+    background-image: url('../img/Bottom_texture.jpg');
+
+}
+
+.navbar-content {
+    vertical-align: -webkit-baseline-middle;
+    text-align: center;
+    font-size: 1rem;
+    color: white;
+}
+
+div.panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.login-container {
+    width: 100%;
+}
+
+.login-title {
+    padding: 15px;
+}
+
+.login-form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 10rem;
+}
+
+.logout-dropdown {
+    position: relative;
+    right: 1rem;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.divider {
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 1rem;
+}
+
+.dish {
+    margin-bottom: 1rem;
+}
+
+.dish-delete,
+.dish-edit,
+.dish-add-orderlist {
+    float: left;
+    margin-top: 4rem;
+}
+
+.order {
+    float: right;
+    width: 30%;
+}
+
+.delete-icon,
+.edit-icon {
+    font-size: 1.5rem !important;
+}
+
+.delete-icon {
+    margin-right: 1rem;
+}
+
+.edit-icon {
+    margin-left: 1rem;
+}
+
+.dish-title {
+    float: left;
+    font-weight: 800;
+}
+
+.dish-price {
+    float: right;
+    font-weight: 800;
+}
+
+.footer {
+    background-image: url('../img/footer.jpg');
+    height: 135px;
+    color: white;
+}
+
+.footer-left{
+    float: left;
+    position: relative;
+    left: 5%;
+    top: 10%;
+}
+
+.footer-middle {
+    float: left;
+    left: 25%;
+    position: relative;
+    top: 10%;
+}
+
+.footer-right {
+    float: left;
+    position: relative;
+    left: 40%;
+    top: 60%;
+}
+
+.wifi {
+    margin: 0px 0px 5px 100px;
+    border: 0px solid #000000;
+}
