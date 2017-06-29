@@ -71,6 +71,7 @@
     <ul class="side-nav">
         <li class="link"><?= $this->Html->link(__('Gerecht toevoegen'), ['action' => 'add']) ?></li>
         <li class="link"><?= $this->Html->link(__('Gerechten bewerken'), ['action' => 'index']) ?></li>
+        <li class="link"><?= $this->Html->link(__('Reserveringen bekijken'), ['controller' => 'Orderlists', 'action' => 'orders']) ?></li>
     </ul>
 
     <ul class="side-nav">
