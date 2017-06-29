@@ -54,11 +54,11 @@ class SubcategoriesController extends AppController
         if ($this->request->is('post')) {
             $subcategory = $this->Subcategories->patchEntity($subcategory, $this->request->getData());
             if ($this->Subcategories->save($subcategory)) {
-                $this->Flash->success(__('The subcategory has been saved.'));
+                $this->Flash->success(__('De categorie is toegevoegd'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The subcategory could not be saved. Please, try again.'));
+            $this->Flash->error(__('De categorie kon niet toegevoegd worden, probeer het opnieuw.'));
         }
         $this->set(compact('subcategory'));
         $this->set('_serialize', ['subcategory']);
@@ -79,11 +79,11 @@ class SubcategoriesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $subcategory = $this->Subcategories->patchEntity($subcategory, $this->request->getData());
             if ($this->Subcategories->save($subcategory)) {
-                $this->Flash->success(__('The subcategory has been saved.'));
+                $this->Flash->success(__('De categorie is bijgewerkt.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The subcategory could not be saved. Please, try again.'));
+            $this->Flash->error(__('De categorie kon niet bijgewerkt worden, probeer het opnieuw.'));
         }
         $this->set(compact('subcategory'));
         $this->set('_serialize', ['subcategory']);
@@ -101,9 +101,9 @@ class SubcategoriesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $subcategory = $this->Subcategories->get($id);
         if ($this->Subcategories->delete($subcategory)) {
-            $this->Flash->success(__('The subcategory has been deleted.'));
+            $this->Flash->success(__('De categorie is verwijderd.'));
         } else {
-            $this->Flash->error(__('The subcategory could not be deleted. Please, try again.'));
+            $this->Flash->error(__('De categorie kon niet verwijderd worden, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);
