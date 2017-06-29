@@ -6,29 +6,26 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Voeg categorie toe'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="categories index large-9 medium-8 columns content">
-    <h3><?= __('Categories') ?></h3>
+    <h3><?= __('Kaarten') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('category') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Kaart') ?></th>
+                <th scope="col" class="actions"><?= __('Acties') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($categories as $category): ?>
             <tr>
-                <td><?= $this->Number->format($category->id) ?></td>
                 <td><?= h($category->category) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]) ?>
+                    <?= $this->Html->link(__('Tonen'), ['action' => 'view', $category->id]) ?>
+                    <?= $this->Html->link(__('Bewerken'), ['action' => 'edit', $category->id]) ?>
+                    <?= $this->Form->postLink(__('Verwijderen'), ['action' => 'delete', $category->id], ['confirm' => __('Weet u zeker dat u de {0} kaart wilt verwijderen?', $category->category)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -36,12 +33,12 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Eerste')) ?>
+            <?= $this->Paginator->prev('< ' . __('Vorige')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Volgende') . ' >') ?>
+            <?= $this->Paginator->last(__('Laatste') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} van {{pages}}, toont {{current}} kaart(en) van {{count}} totaal')]) ?></p>
     </div>
 </div>

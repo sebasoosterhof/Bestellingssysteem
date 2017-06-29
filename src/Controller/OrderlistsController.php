@@ -219,14 +219,13 @@ class OrderlistsController extends AppController
 
             $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->data['orderlists']);
             if ($this->request->is('post')) {
-                if ($this->Orderlists->save($orderlist)) {
-                    $this->Flash->success(__('De reservering is verzonden.'));
-                }
-                else {
+                if (!$this->Orderlists->save($orderlist)) {
                     $this->Flash->error(__('De reservering kon niet verzonden worden, probeer het opnieuw.'));
                 }
-
             }
+        }
+        if ($this->Orderlists->save($orderlist)) {
+            $this->Flash->success(__('De reservering is verzonden.'));
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -253,6 +252,36 @@ class OrderlistsController extends AppController
         $this->set(compact('lunchDishes', 'dinerDishes', 'dessertDishes', 'subcategories'));
         $this->set('_serialize', ['orderlists']);
     }
+
+     /**
+     * orders method
+     *
+     * @return \Cake\Http\Response|null Redirects to index.
+     *
+     */
+    public function orders() {
+        // $this->loadModel('Orderlists');
+        // $this->loadModel('Reservations');
+
+
+        // $orderlists = $this->paginate($this->Orderlists);
+
+        // $reservations = $this->Reservations->find('all');
+
+
+
+        // $this->set(compact('orderlists', 'reservations'));
+        // $this->set('_serialize', ['orderlists']);
+
+        $this->paginate = [
+            'contain' => ['Reservations', 'Dishes']
+        ];
+        $orderlists = $this->paginate($this->Orderlists);
+        $this->set(compact('orderlists'));
+        $this->set('_serialize', ['orderlists']);
+
+    }
+
 
 
 

@@ -5,24 +5,23 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Kaart verwijderen'),
                 ['action' => 'delete', $category->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]
+                ['confirm' => __('Weet u zeker dat u de {0} kaart wilt verwijderen?', $category->category)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Kaarten overzicht'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="categories form large-9 medium-8 columns content">
     <?= $this->Form->create($category) ?>
     <fieldset>
-        <legend><?= __('Edit Category') ?></legend>
+        <legend><?= __('Kaart bewerken') ?></legend>
         <?php
-            echo $this->Form->control('category');
+            echo $this->Form->control('category', array('label' => 'Kaart'));
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Bewerken')) ?>
     <?= $this->Form->end() ?>
 </div>

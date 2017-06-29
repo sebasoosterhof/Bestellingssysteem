@@ -18,12 +18,131 @@ class DishesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+    // public function index()
+    // {
+    //     $dishes = $this->paginate($this->Dishes);
+
+    //     $this->set(compact('dishes'));
+    //     $this->set('_serialize', ['dishes']);
+    // }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Dish id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    // public function view($id = null)
+    // {
+    //     $dish = $this->Dishes->get($id);
+    //     // , [
+    //     //     'contain' => ['Reservations']
+    //     // ]);
+
+    //     $this->set('dish', $dish);
+    //     $this->set('_serialize', ['dish']);
+    // }
+
+    /**
+     * Add method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
+    // public function add()
+    // {
+    //     $dish = $this->Dishes->newEntity();
+    //     if ($this->request->is('post')) {
+    //         $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
+    //         if ($this->Dishes->save($dish)) {
+    //             $this->Flash->success(__('Het gerecht is opgeslagen en toegevoegd.'));
+
+    //             return $this->redirect(['action' => 'index']);
+    //         }
+    //         $this->Flash->error(__('Het gerecht kon niet opgeslagen of toegevoegd worden, probeer het opnieuw.'));
+    //     }
+
+    //     $categories = $this->Dishes->Categories->find()->extract('category');
+    //     $subcategories = $this->Dishes->Subcategories->find()->extract('subcategory');
+
+    //     $this->set(compact('dish', 'categories', 'subcategories'));
+    //     $this->set('_serialize', ['dish']);
+    // }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Dish id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    // public function edit($id = null)
+    // {
+    //     $dish = $this->Dishes->get($id, [
+    //         'contain' => []
+    //     ]);
+    //     if ($this->request->is(['patch', 'post', 'put'])) {
+    //         $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
+    //         if ($this->Dishes->save($dish)) {
+    //             $this->Flash->success(__('Het gerecht is opgeslagen en bijgewerkt.'));
+
+    //             return $this->redirect(['action' => 'index']);
+    //         }
+    //         $this->Flash->error(__('Het gerecht kon niet bijgewerkt worden, probeer het opnieuw.'));
+    //     }
+
+    //     $categories = $this->Dishes->Categories->find()->extract('category');
+    //     $subcategories = $this->Dishes->Subcategories->find()->extract('subcategory');
+
+    //     $this->set(compact('dish', 'categories', 'subcategories'));
+    //     $this->set('_serialize', ['dish']);
+    // }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Dish id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    // public function delete($id = null)
+    // {
+    //     $this->request->allowMethod(['post', 'delete']);
+    //     $dish = $this->Dishes->get($id);
+    //     if ($this->Dishes->delete($dish)) {
+    //         $this->Flash->success(__('Het gerecht is verwijderd.'));
+    //     } else {
+    //         $this->Flash->error(__('Het gerecht kon niet verwijderd worden, probeer het opnieuw.'));
+    //     }
+
+    //     return $this->redirect(['action' => 'index']);
+    // }
+
+
+
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|void
+     */
     public function index()
     {
         $dishes = $this->paginate($this->Dishes);
 
-        $this->set(compact('dishes'));
+        $this->loadModel('Subcategories');
+
+        $subcategories = $this->Subcategories->find('all');
+
+        $this->set(compact('dishes', 'subcategories'));
         $this->set('_serialize', ['dishes']);
+
+        $lunchDishes = $this->Dishes->find('all')->where(['categories_id' => 1]);
+        $dinerDishes = $this->Dishes->find('all')->where(['categories_id' => 2]);
+        $dessertDishes = $this->Dishes->find('all')->where(['categories_id' => 3]);
+
+        $this->set('lunchDishes', $lunchDishes);
+        $this->set('dinerDishes', $dinerDishes);
+        $this->set('dessertDishes', $dessertDishes);
     }
 
     /**
@@ -35,10 +154,9 @@ class DishesController extends AppController
      */
     public function view($id = null)
     {
-        $dish = $this->Dishes->get($id);
-        // , [
-        //     'contain' => ['Reservations']
-        // ]);
+        $dish = $this->Dishes->get($id, [
+            'contain' => ['Orderlists']
+        ]);
 
         $this->set('dish', $dish);
         $this->set('_serialize', ['dish']);
@@ -51,21 +169,23 @@ class DishesController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Categories');
+        $this->loadModel('Subcategories');
+
+        $categories = $this->Categories->find()->extract('category');
+        $subcategories = $this->Subcategories->find()->extract('subcategory');
+
         $dish = $this->Dishes->newEntity();
         if ($this->request->is('post')) {
             $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
             if ($this->Dishes->save($dish)) {
-                $this->Flash->success(__('Het gerecht is opgeslagen en toegevoegd.'));
+                $this->Flash->success(__('Het gerecht is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Het gerecht kon niet opgeslagen of toegevoegd worden, probeer het opnieuw.'));
+            $this->Flash->error(__('Het gerecht kon niet worden opgeslagen, probeer het opnieuw.'));
         }
-
-        $categories = $this->Dishes->Categories->find()->extract('category');
-        $subcategories = $this->Dishes->Subcategories->find()->extract('subcategory');
-
-        $this->set(compact('dish', 'categories', 'subcategories'));
+        $this->set(compact('dish', 'dishes', 'categories', 'subcategories'));
         $this->set('_serialize', ['dish']);
     }
 
@@ -84,17 +204,13 @@ class DishesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
             if ($this->Dishes->save($dish)) {
-                $this->Flash->success(__('Het gerecht is opgeslagen en bijgewerkt.'));
+                $this->Flash->success(__('Het gerecht is opgeslagen.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Het gerecht kon niet bijgewerkt worden, probeer het opnieuw.'));
+            $this->Flash->error(__('Het gerecht kon niet worden opgeslagen, probeer het opnieuw.'));
         }
-
-        $categories = $this->Dishes->Categories->find()->extract('category');
-        $subcategories = $this->Dishes->Subcategories->find()->extract('subcategory');
-
-        $this->set(compact('dish', 'categories', 'subcategories'));
+        $this->set(compact('dish'));
         $this->set('_serialize', ['dish']);
     }
 
@@ -112,7 +228,7 @@ class DishesController extends AppController
         if ($this->Dishes->delete($dish)) {
             $this->Flash->success(__('Het gerecht is verwijderd.'));
         } else {
-            $this->Flash->error(__('Het gerecht kon niet verwijderd worden, probeer het opnieuw.'));
+            $this->Flash->error(__('Het gerecht kon niet worden verwijderd, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);
