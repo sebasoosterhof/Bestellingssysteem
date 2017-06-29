@@ -198,6 +198,12 @@ class DishesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->loadModel('Categories');
+        $this->loadModel('Subcategories');
+
+        $categories = $this->Categories->find()->extract('category');
+        $subcategories = $this->Subcategories->find()->extract('subcategory');
+
         $dish = $this->Dishes->get($id, [
             'contain' => []
         ]);
@@ -210,7 +216,7 @@ class DishesController extends AppController
             }
             $this->Flash->error(__('Het gerecht kon niet worden opgeslagen, probeer het opnieuw.'));
         }
-        $this->set(compact('dish'));
+        $this->set(compact('dish', 'categories', 'subcategories'));
         $this->set('_serialize', ['dish']);
     }
 
