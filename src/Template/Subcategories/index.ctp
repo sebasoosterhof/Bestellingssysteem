@@ -6,29 +6,26 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Subcategory'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Nieuwe categorie toevoegen'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="subcategories index large-9 medium-8 columns content">
-    <h3><?= __('Subcategories') ?></h3>
+    <h3><?= __('Categorieën') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('subcategory') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Categorie') ?></th>
+                <th scope="col" class="actions"><?= __('Acties') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($subcategories as $subcategory): ?>
             <tr>
-                <td><?= $this->Number->format($subcategory->id) ?></td>
                 <td><?= h($subcategory->subcategory) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $subcategory->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $subcategory->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $subcategory->id], ['confirm' => __('Are you sure you want to delete # {0}?', $subcategory->id)]) ?>
+                    <?= $this->Html->link(__('Tonen'), ['action' => 'view', $subcategory->id]) ?>
+                    <?= $this->Html->link(__('Bewerken'), ['action' => 'edit', $subcategory->id]) ?>
+                    <?= $this->Form->postLink(__('Verwijderen'), ['action' => 'delete', $subcategory->id], ['confirm' => __('Weet u zeker dat u de {0} categorie wilt verwijderen??', $subcategory->subcategory)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -36,12 +33,12 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Eerste')) ?>
+            <?= $this->Paginator->prev('< ' . __('Vorige')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Volgende') . ' >') ?>
+            <?= $this->Paginator->last(__('Laatste') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} van {{pages}}, toont {{current}} categorie(ën) van {{count}} totaal')]) ?></p>
     </div>
 </div>
