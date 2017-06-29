@@ -14,116 +14,7 @@ session_start();
 class OrderlistsController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    // public function index()
-    // {
-    //     $this->paginate = [
-    //         'contain' => ['Reservations', 'Dishes']
-    //     ];
-    //     $orderlists = $this->paginate($this->Orderlists);
-
-    //     $this->set(compact('orderlists'));
-    //     $this->set('_serialize', ['orderlists']);
-    // }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Orderlist id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    // public function view($id = null)
-    // {
-    //     $orderlist = $this->Orderlists->get($id, [
-    //         'contain' => ['Reservations', 'Dishes']
-    //     ]);
-
-    //     $this->set('orderlist', $orderlist);
-    //     $this->set('_serialize', ['orderlist']);
-    // }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    // public function add()
-    // {
-    //     $orderlist = $this->Orderlists->newEntity();
-    //     if ($this->request->is('post')) {
-    //         $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->getData());
-    //         if ($this->Orderlists->save($orderlist)) {
-    //             $this->Flash->success(__('The orderlist has been saved.'));
-
-    //             return $this->redirect(['action' => 'index']);
-    //         }
-    //         $this->Flash->error(__('The orderlist could not be saved. Please, try again.'));
-    //     }
-    //     $reservations = $this->Orderlists->Reservations->find('list', ['limit' => 200]);
-    //     $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
-    //     $this->set(compact('orderlist', 'reservations', 'dishes'));
-    //     $this->set('_serialize', ['orderlist']);
-    // }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Orderlist id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    // public function edit($id = null)
-    // {
-    //     $orderlist = $this->Orderlists->get($id, [
-    //         'contain' => []
-    //     ]);
-    //     if ($this->request->is(['patch', 'post', 'put'])) {
-    //         $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->getData());
-    //         if ($this->Orderlists->save($orderlist)) {
-    //             $this->Flash->success(__('The orderlist has been saved.'));
-
-    //             return $this->redirect(['action' => 'index']);
-    //         }
-    //         $this->Flash->error(__('The orderlist could not be saved. Please, try again.'));
-    //     }
-    //     $reservations = $this->Orderlists->Reservations->find('list', ['limit' => 200]);
-    //     $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
-    //     $this->set(compact('orderlist', 'reservations', 'dishes'));
-    //     $this->set('_serialize', ['orderlist']);
-    // }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Orderlist id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    // public function delete($id = null)
-    // {
-    //     $this->request->allowMethod(['post', 'delete']);
-    //     $orderlist = $this->Orderlists->get($id);
-    //     if ($this->Orderlists->delete($orderlist)) {
-    //         $this->Flash->success(__('The orderlist has been deleted.'));
-    //     } else {
-    //         $this->Flash->error(__('The orderlist could not be deleted. Please, try again.'));
-    //     }
-
-    //     return $this->redirect(['action' => 'index']);
-    // }
-
-
-
-
-
-
-
-    /**
+     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
@@ -145,13 +36,9 @@ class OrderlistsController extends AppController
 
         $orderlists = $this->paginate($this->Orderlists);
 
-        $subcategories = $this->paginate($this->Subcategories);
+        $subcategories = $this->Subcategories->find('all');
 
-        // $reservations = $this->Reservations->find('all');
-        // $reservations = $this->paginate($this->Orderlists->Reservations);
-
-        // var_dump($reservations);
-        // die;
+        $reservations = $this->Reservations->find('all');
 
         $lunchDishes = $this->Orderlists->Dishes->find('all')->where(['categories_id' => '1']);
         $dinerDishes = $this->Orderlists->Dishes->find('all')->where(['categories_id' => '2']);
@@ -160,7 +47,6 @@ class OrderlistsController extends AppController
         $this->set(compact('orderlists', 'lunchDishes', 'dinerDishes', 'dessertDishes', 'reservations', 'subcategories'));
         $this->set('_serialize', ['orderlists']);
 
-        $this->set('reservations', $this->orderlists);
     }
 
     /**
@@ -187,18 +73,24 @@ class OrderlistsController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Reservations');
+
+        $reservations = $this->Reservations->find()->extract('lastname');
+
         $orderlist = $this->Orderlists->newEntity();
         if ($this->request->is('post')) {
             $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->getData());
             if ($this->Orderlists->save($orderlist)) {
-                $this->Flash->success(__('De reservering is opgeslagen.'));
+                $this->Flash->success(__('De order is opgeslagen en toegevoegd.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('De reservering kon niet opgeslagen worden, probeer het opnieuw.'));
+             debug($orderlist);
+             die();
+            $this->Flash->error(__(' kon niet opgeslagen of toegevoegd worden, probeer het opnieuw.'));
         }
         $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
-        $this->set(compact('orderlist', 'dishes'));
+        $this->set(compact('orderlist', 'dishes', 'reservations'));
         $this->set('_serialize', ['orderlist']);
     }
 
@@ -217,11 +109,11 @@ class OrderlistsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->getData());
             if ($this->Orderlists->save($orderlist)) {
-                $this->Flash->success(__('De reservering is opgeslagen.'));
+                $this->Flash->success(__('De bestellijst is opgeslagen en bijgewerkt.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('De reservering kon niet opgeslagen worden, probeer het opnieuw.'));
+            $this->Flash->error(__('De bestellijst kon niet opgeslagen of bijgewerkt worden, probeer het opnieuw.'));
         }
         $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
         $this->set(compact('orderlist', 'dishes'));
@@ -240,9 +132,9 @@ class OrderlistsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $orderlist = $this->Orderlists->get($id);
         if ($this->Orderlists->delete($orderlist)) {
-            $this->Flash->success(__('De reservering is verwijderd.'));
+            $this->Flash->success(__('De bestellijst is verwijderd.'));
         } else {
-            $this->Flash->error(__('De reservering kon niet verwijderd worden, probeer het opnieuw.'));
+            $this->Flash->error(__('De bestellijst kon niet verwijderd worden, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -258,8 +150,8 @@ class OrderlistsController extends AppController
     public function addDishToOrder($id) {
         $dish = $this->Orderlists->Dishes->get($id);
 
-        $count = count($this->request->session()->read('sessionOrders')); // counts the number of dishes in sessionOrders.
-        $this->request->session()->write('sessionOrders.'.$count, $this->Orderlists->Dishes->get($id, array('subcategory','title','price'))); // adds the dish after the previous dish if there is one.
+        $count = count($this->request->session()->read('sessionOrders'));
+        $this->request->session()->write('sessionOrders.'.$count, $this->Orderlists->Dishes->get($id, array('subcategory','title','price')));
 
         return $this->redirect(['action' => 'index']);
     }
@@ -301,6 +193,72 @@ class OrderlistsController extends AppController
         $this->request->session()->delete('sessionOrders');
 
         return $this->redirect(['action' => 'index']);
+    }
+
+     /**
+     * setOrderlist method
+     *
+     * @return \Cake\Http\Response|null Redirects to index.
+     *
+     */
+    public function setOrderlist() {
+        $this->loadModel('Reservations');
+
+        $sessionOrders = $this->request->session()->read('sessionOrders');
+        $reservations = $this->Reservations->find('all');
+
+        foreach ($reservations as $key => $value) {
+            $reservationId = $value['id'];
+        }
+
+        $orderlist = $this->Orderlists->newEntity();
+        foreach ($sessionOrders as $key => $value) {
+            $dishes_id = $value['id'];
+
+            $this->request->data['orderlists']['dishes_id'] = $dishes_id;
+            $this->request->data['orderlists']['reservations_id'] = $reservationId;
+
+
+            $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->data['orderlists']);
+            if ($this->request->is('post')) {
+                // var_dump($this->Orderlists->save($orderlist));
+                // die;
+                if ($this->Orderlists->save($orderlist)) {
+                    $this->Flash->success(__('De reservering is verzonden.'));
+                }
+                else {
+                    // debug($this->Orderlists->invalidFields());
+                    debug($orderlist);
+                    die;
+                    $this->Flash->error(__('De reservering kon niet verzonden worden, probeer het opnieuw.'));
+                }
+
+            }
+        }
+        return $this->redirect(['action' => 'index']);
+    }
+
+     /**
+     * overview method
+     *
+     * @return \Cake\Http\Response|null Redirects to index.
+     *
+     */
+    public function overview() {
+        $this->loadModel('Dishes');
+        $this->loadModel('Subcategories');
+
+        $this->paginate = [
+            'contain' => ['Dishes']
+        ];
+
+        $subcategories = $this->Subcategories->find('all');
+        $lunchDishes = $this->Orderlists->Dishes->find('all')->where(['categories_id' => '1']);
+        $dinerDishes = $this->Orderlists->Dishes->find('all')->where(['categories_id' => '2']);
+        $dessertDishes = $this->Orderlists->Dishes->find('all')->where(['categories_id' => '3']);
+
+        $this->set(compact('lunchDishes', 'dinerDishes', 'dessertDishes', 'subcategories'));
+        $this->set('_serialize', ['orderlists']);
     }
 
 

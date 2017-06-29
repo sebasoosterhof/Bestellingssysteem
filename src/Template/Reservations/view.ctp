@@ -14,10 +14,18 @@
     </ul>
 </nav>
 <div class="reservations view large-9 medium-8 columns content">
-    <h3><?= h($reservation->id) ?></h3>
+    <h3><?= h($reservation->lastname) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Lastname') ?></th>
+            <th scope="row"><?= __('Reserveringsdatum') ?></th>
+            <td><?= h($reservation->reservation_date) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Reserveringstijd') ?></th>
+            <td><?php echo $time = date("H:i",strtotime($reservation->reservation_time)) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Achternaam') ?></th>
             <td><?= h($reservation->lastname) ?></td>
         </tr>
         <tr>
@@ -25,28 +33,16 @@
             <td><?= h($reservation->email) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Telephonenumber') ?></th>
+            <th scope="row"><?= __('Telefoonnummer') ?></th>
             <td><?= h($reservation->telephonenumber) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Company Name') ?></th>
+            <th scope="row"><?= __('Bedrijfsnaam') ?></th>
             <td><?= h($reservation->company_name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($reservation->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Persons') ?></th>
+            <th scope="row"><?= __('Aantal personen') ?></th>
             <td><?= $this->Number->format($reservation->persons) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Reservation Date') ?></th>
-            <td><?= h($reservation->reservation_date) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Reservation Time') ?></th>
-            <td><?= h($reservation->reservation_time) ?></td>
         </tr>
     </table>
 </div>

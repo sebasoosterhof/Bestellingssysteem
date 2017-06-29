@@ -11,8 +11,6 @@
         <li><?= $this->Form->postLink(__('Delete Dish'), ['action' => 'delete', $dish->id], ['confirm' => __('Are you sure you want to delete # {0}?', $dish->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Dishes'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Dish'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="dishes view large-9 medium-8 columns content">

@@ -27,6 +27,6 @@
             echo $this->Form->control('id');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Bijwerken')) ?>
     <?= $this->Form->end() ?>
 </div>

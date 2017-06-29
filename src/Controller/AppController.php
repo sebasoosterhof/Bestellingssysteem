@@ -76,6 +76,7 @@ class AppController extends Controller
             ]);
 
             $this->Auth->allow(['display']);
+            $this->Auth->allow(array('Orderlists' => 'overview', 'action' => 'overview'));
 
         /*
          * Enable the following components for recommended CakePHP security settings.

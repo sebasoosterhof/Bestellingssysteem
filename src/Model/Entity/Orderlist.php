@@ -27,7 +27,7 @@ class Orderlist extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'reservations_id' => false,
-        'dishes_id' => false
+        'reservations_id' => true,
+        'dishes_id' => true
     ];
 }

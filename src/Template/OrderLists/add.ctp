@@ -16,11 +16,12 @@
 <div class="orderlists form large-9 medium-8 columns content">
     <?= $this->Form->create($orderlist) ?>
     <fieldset>
-        <legend><?= __('Add Orderlist') ?></legend>
+        <legend><?= __('Voeg order toe') ?></legend>
         <?php
-            echo $this->Form->control('id');
+            echo $this->Form->control('reservations_id', array('label' => 'Reservering'), ['options' => $reservations, 'empty' => false,  'required' => true]);
+            echo $this->Form->control('dishes_id', array('label' => 'Gerect'), ['empty' => false,  'required' => true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Toevoegen')) ?>
     <?= $this->Form->end() ?>
 </div>

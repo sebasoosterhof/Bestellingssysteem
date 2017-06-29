@@ -13,8 +13,6 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Dishes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="dishes form large-9 medium-8 columns content">

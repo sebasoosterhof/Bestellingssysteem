@@ -34,15 +34,16 @@ class OrderlistsTable extends Table
         parent::initialize($config);
 
         $this->setTable('orderlists');
-        $this->setDisplayField('reservations_id');
-        $this->setPrimaryKey(['reservations_id', 'dishes_id']);
+        $this->setDisplayField('reservations_id', 'dishes_id');
+        // $this->setPrimaryKey(['reservations_id', 'dishes_id']);
+        $this->setPrimaryKey(['id']);
 
-        $this->belongsTo('Reservations', [
-            'foreignKey' => 'reservations_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Dishes', [
             'foreignKey' => 'dishes_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Reservations', [
+            'foreignKey' => 'reservations_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -71,8 +72,8 @@ class OrderlistsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['reservations_id'], 'Reservations'));
         $rules->add($rules->existsIn(['dishes_id'], 'Dishes'));
+        $rules->add($rules->existsIn(['reservations_id'], 'Reservations'));
 
         return $rules;
     }

@@ -20,9 +20,6 @@ class DishesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Reservations']
-        ];
         $dishes = $this->paginate($this->Dishes);
 
         $this->set(compact('dishes'));
@@ -38,9 +35,10 @@ class DishesController extends AppController
      */
     public function view($id = null)
     {
-        $dish = $this->Dishes->get($id, [
-            'contain' => ['Reservations']
-        ]);
+        $dish = $this->Dishes->get($id);
+        // , [
+        //     'contain' => ['Reservations']
+        // ]);
 
         $this->set('dish', $dish);
         $this->set('_serialize', ['dish']);
@@ -57,18 +55,17 @@ class DishesController extends AppController
         if ($this->request->is('post')) {
             $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
             if ($this->Dishes->save($dish)) {
-                $this->Flash->success(__('The dish has been saved.'));
+                $this->Flash->success(__('Het gerecht is opgeslagen en toegevoegd.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The dish could not be saved. Please, try again.'));
+            $this->Flash->error(__('Het gerecht kon niet opgeslagen of toegevoegd worden, probeer het opnieuw.'));
         }
 
         $categories = $this->Dishes->Categories->find()->extract('category');
         $subcategories = $this->Dishes->Subcategories->find()->extract('subcategory');
-        $reservations = $this->Dishes->Reservations->find('all');
 
-        $this->set(compact('dish', 'reservations', 'categories', 'subcategories'));
+        $this->set(compact('dish', 'categories', 'subcategories'));
         $this->set('_serialize', ['dish']);
     }
 
@@ -87,18 +84,17 @@ class DishesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dish = $this->Dishes->patchEntity($dish, $this->request->getData());
             if ($this->Dishes->save($dish)) {
-                $this->Flash->success(__('The dish has been saved.'));
+                $this->Flash->success(__('Het gerecht is opgeslagen en bijgewerkt.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The dish could not be saved. Please, try again.'));
+            $this->Flash->error(__('Het gerecht kon niet bijgewerkt worden, probeer het opnieuw.'));
         }
 
         $categories = $this->Dishes->Categories->find()->extract('category');
         $subcategories = $this->Dishes->Subcategories->find()->extract('subcategory');
-        $reservations = $this->Dishes->Reservations->find('list', ['limit' => 200]);
 
-        $this->set(compact('dish', 'reservations', 'categories', 'subcategories'));
+        $this->set(compact('dish', 'categories', 'subcategories'));
         $this->set('_serialize', ['dish']);
     }
 
@@ -114,9 +110,9 @@ class DishesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $dish = $this->Dishes->get($id);
         if ($this->Dishes->delete($dish)) {
-            $this->Flash->success(__('The dish has been deleted.'));
+            $this->Flash->success(__('Het gerecht is verwijderd.'));
         } else {
-            $this->Flash->error(__('The dish could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Het gerecht kon niet verwijderd worden, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);

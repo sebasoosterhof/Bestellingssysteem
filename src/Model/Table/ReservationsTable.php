@@ -31,11 +31,11 @@ class ReservationsTable extends Table
         parent::initialize($config);
 
         $this->setTable('reservations');
-        $this->setDisplayField('id');
+        $this->setDisplayField('lastname');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('Dishes', [
-            'foreignKey' => 'dish_id'
+        $this->belongsTo('Orderlists', [
+            'foreignKey' => 'id'
         ]);
     }
 

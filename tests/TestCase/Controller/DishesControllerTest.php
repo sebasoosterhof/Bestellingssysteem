@@ -16,8 +16,8 @@ class DishesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.dishes',
-        'app.reservations'
+        'app.dishes'
+        // 'app.reservations'
     ];
 
     /**

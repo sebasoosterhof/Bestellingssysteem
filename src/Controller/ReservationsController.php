@@ -54,11 +54,11 @@ class ReservationsController extends AppController
         if ($this->request->is('post')) {
             $reservation = $this->Reservations->patchEntity($reservation, $this->request->getData());
             if ($this->Reservations->save($reservation)) {
-                $this->Flash->success(__('The reservation has been saved.'));
+                $this->Flash->success(__('De reservering is opgeslagen en toegevoegd.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The reservation could not be saved. Please, try again.'));
+            $this->Flash->error(__('De reservering kon niet opgeslagen of toegevoegd worden, probeer het opnieuw.'));
         }
         $this->set(compact('reservation'));
         $this->set('_serialize', ['reservation']);
@@ -79,11 +79,11 @@ class ReservationsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $reservation = $this->Reservations->patchEntity($reservation, $this->request->getData());
             if ($this->Reservations->save($reservation)) {
-                $this->Flash->success(__('The reservation has been saved.'));
+                $this->Flash->success(__('De reservering is opgeslagen en bijgewerkt.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The reservation could not be saved. Please, try again.'));
+            $this->Flash->error(__('De reservering kon niet opgeslagn of bijgewerkt worden, probeer het opnieuw.'));
         }
         $this->set(compact('reservation'));
         $this->set('_serialize', ['reservation']);
@@ -101,9 +101,9 @@ class ReservationsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $reservation = $this->Reservations->get($id);
         if ($this->Reservations->delete($reservation)) {
-            $this->Flash->success(__('The reservation has been deleted.'));
+            $this->Flash->success(__('De reservering is verwijderd.'));
         } else {
-            $this->Flash->error(__('The reservation could not be deleted. Please, try again.'));
+            $this->Flash->error(__('De reservering kon niet verwijderd worden, probeer het opnieuw.'));
         }
 
         return $this->redirect(['action' => 'index']);

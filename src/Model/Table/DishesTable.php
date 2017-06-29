@@ -46,7 +46,7 @@ class DishesTable extends Table
             'joinType' => 'INNER'
         ]);
 
-        $this->belongsTo('Reservations', [
+        $this->belongsTo('Orderlists', [
             'foreignKey' => 'id'
         ]);
     }
