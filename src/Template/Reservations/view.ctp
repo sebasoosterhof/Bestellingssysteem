@@ -6,11 +6,10 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Reservation'), ['action' => 'edit', $reservation->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Reservation'), ['action' => 'delete', $reservation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $reservation->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Reservations'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Reservation'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Reservering bewerken'), ['action' => 'edit', $reservation->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Reservering verwijderen'), ['action' => 'delete', $reservation->id], ['confirm' => __('Weet u zeker dat u reservering {0} wilt verwijderen?', $reservation->lastname)]) ?> </li>
+        <li><?= $this->Html->link(__('Reserveringen overzicht'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Nieuwe reservering toevoegen'), ['action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="reservations view large-9 medium-8 columns content">

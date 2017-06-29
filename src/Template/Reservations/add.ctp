@@ -5,8 +5,7 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Reservations'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Reserveringen overzicht'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="reservations form large-9 medium-8 columns content">
@@ -23,6 +22,6 @@
             echo $this->Form->control('company_name', array('label' => 'Bedrijfsnaam'));
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Toevoegen')) ?>
     <?= $this->Form->end() ?>
 </div>
