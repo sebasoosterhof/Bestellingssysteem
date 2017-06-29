@@ -85,8 +85,6 @@ class OrderlistsController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-             debug($orderlist);
-             die();
             $this->Flash->error(__(' kon niet opgeslagen of toegevoegd worden, probeer het opnieuw.'));
         }
         $dishes = $this->Orderlists->Dishes->find('list', ['limit' => 200]);
@@ -211,8 +209,8 @@ class OrderlistsController extends AppController
             $reservationId = $value['id'];
         }
 
-        $orderlist = $this->Orderlists->newEntity();
         foreach ($sessionOrders as $key => $value) {
+            $orderlist = $this->Orderlists->newEntity();
             $dishes_id = $value['id'];
 
             $this->request->data['orderlists']['dishes_id'] = $dishes_id;
@@ -221,15 +219,10 @@ class OrderlistsController extends AppController
 
             $orderlist = $this->Orderlists->patchEntity($orderlist, $this->request->data['orderlists']);
             if ($this->request->is('post')) {
-                // var_dump($this->Orderlists->save($orderlist));
-                // die;
                 if ($this->Orderlists->save($orderlist)) {
                     $this->Flash->success(__('De reservering is verzonden.'));
                 }
                 else {
-                    // debug($this->Orderlists->invalidFields());
-                    debug($orderlist);
-                    die;
                     $this->Flash->error(__('De reservering kon niet verzonden worden, probeer het opnieuw.'));
                 }
 
