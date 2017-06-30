@@ -88,7 +88,7 @@
         <p>Subtotaal €<?php echo number_format(array_sum($totalPrice),2) ?> (excl. dranken)</p>
 
         <?php
-            echo $this->Form->postLink('Reserveren', ['action' => 'setOrderlist'])?>
+            echo $this->Form->postLink('Reserveren', ['action' => 'setOrderlist'], ['class' => 'button'])?>
     </div>
 
         <?php
