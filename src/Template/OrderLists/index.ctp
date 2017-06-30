@@ -88,12 +88,6 @@
         <p>Subtotaal €<?php echo number_format(array_sum($totalPrice),2) ?> (excl. dranken)</p>
 
         <?php
-            // echo $this->Html->link(
-            //     'Reserveren',
-            //     'http://www.hettheehuis.nl',
-            //     ['class' => 'button']
-            // );
-
             echo $this->Form->postLink('Reserveren', ['action' => 'setOrderlist'])?>
     </div>
 
